@@ -1,29 +1,53 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Nav } from "@/components/pisoft/Nav";
+import { Hero } from "@/components/pisoft/Hero";
+import { ChaosStory } from "@/components/pisoft/ChaosStory";
+import { Transformation } from "@/components/pisoft/Transformation";
+import { Ecosystem } from "@/components/pisoft/Ecosystem";
+import { DayInLife } from "@/components/pisoft/DayInLife";
+import { DashboardShowcase } from "@/components/pisoft/DashboardShowcase";
+import { Industries } from "@/components/pisoft/Industries";
+import { Results } from "@/components/pisoft/Results";
+import { Services } from "@/components/pisoft/Services";
+import { Process } from "@/components/pisoft/Process";
+import { Demo } from "@/components/pisoft/Demo";
+import { Trust } from "@/components/pisoft/Trust";
+import { Finale } from "@/components/pisoft/Finale";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Pisoft ERP — One Platform. Complete Business Control." },
+      { name: "description", content: "Pisoft transforms scattered operations into one intelligent business ecosystem. ERP, custom software, and digital solutions for ambitious teams." },
+      { property: "og:title", content: "Pisoft ERP — One Platform. Complete Business Control." },
+      { property: "og:description", content: "Transform scattered operations into one intelligent business ecosystem." },
+    ],
+    links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="relative">
+      <Nav />
+      <Hero />
+      <ChaosStory />
+      <Transformation />
+      <Ecosystem />
+      <DayInLife />
+      <DashboardShowcase />
+      <Industries />
+      <Results />
+      <Services />
+      <Process />
+      <Demo />
+      <Trust />
+      <Finale />
+    </main>
   );
 }
