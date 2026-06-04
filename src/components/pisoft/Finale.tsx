@@ -9,8 +9,9 @@ export function Finale() {
   const orbScale = useTransform(scrollYProgress, [0.3, 0.8], [0.5, 1.3]);
 
   return (
-    <section ref={ref} className="relative py-32 px-6 overflow-hidden bg-[#040a12]">
-      <div className="absolute inset-0 bg-grid opacity-20" />
+    <section ref={ref} className="relative py-32 px-6 overflow-hidden bg-secondary">
+      <div className="absolute inset-0 bg-grid opacity-30" />
+
       <div className="relative max-w-5xl mx-auto text-center">
         <div className="relative h-80 grid place-items-center mb-12">
           <motion.div
