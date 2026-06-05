@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Phone, Menu, X } from "lucide-react";
+import { MapPin, Phone, Menu } from "lucide-react";
+import { useLocation } from "@tanstack/react-router";
 import {
   Sheet,
   SheetContent,
@@ -19,7 +20,7 @@ const marqueeItems = [
 const navItems = [
   { label: "HOME", href: "#" },
   { label: "INDUSTRIES", href: "#industries" },
-  { label: "APPLICATIONS", href: "#ecosystem", active: true },
+  { label: "APPLICATIONS", href: "#ecosystem" },
   { label: "PROCESS", href: "#process" },
   { label: "RESULTS", href: "#results" },
   { label: "CONTACT", href: "#demo" },
@@ -27,6 +28,19 @@ const navItems = [
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+
+  const currentHash = location.hash;
+
+  useEffect(() => {
+    if (open) {
+      const original = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = original;
+      };
+    }
+  }, [open]);
 
   return (
     <motion.header
@@ -115,26 +129,32 @@ export function Nav() {
 
               <nav className="flex-1 overflow-y-auto py-4">
                 <AnimatePresence>
-                  {navItems.map((item, i) => (
-                    <motion.a
-                      key={item.label}
-                      href={item.href}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.05, duration: 0.3 }}
-                      onClick={() => setOpen(false)}
-                      className={`mx-4 mb-2 flex items-center justify-between rounded-lg px-4 py-3.5 text-sm font-bold tracking-wide transition-colors ${
-                        item.active
-                          ? "bg-accent text-accent-foreground"
-                          : "text-foreground hover:bg-primary/10 hover:text-primary"
-                      }`}
-                    >
-                      {item.label}
-                      {item.active && (
-                        <span className="size-2 rounded-full bg-accent-foreground" />
-                      )}
-                    </motion.a>
-                  ))}
+                  {navItems.map((item, i) => {
+                    const isActive =
+                      item.href === "#"
+                        ? currentHash === "" || currentHash === "#"
+                        : currentHash === item.href;
+                    return (
+                      <motion.a
+                        key={item.label}
+                        href={item.href}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.05, duration: 0.3 }}
+                        onClick={() => setOpen(false)}
+                        className={`mx-4 mb-2 flex items-center justify-between rounded-lg px-4 py-3.5 text-sm font-bold tracking-wide transition-colors ${
+                          isActive
+                            ? "bg-accent text-accent-foreground"
+                            : "text-foreground hover:bg-primary/10 hover:text-primary"
+                        }`}
+                      >
+                        {item.label}
+                        {isActive && (
+                          <span className="size-2 rounded-full bg-accent-foreground" />
+                        )}
+                      </motion.a>
+                    );
+                  })}
                 </AnimatePresence>
 
                 <div className="mx-6 mt-6 pt-6 border-t border-border space-y-5">
@@ -217,24 +237,30 @@ export function Nav() {
       <div className="hidden lg:block relative bg-primary text-primary-foreground">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 flex items-stretch justify-between">
           <nav className="flex items-stretch text-sm font-semibold tracking-wide">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className={`relative px-5 py-4 flex items-center transition-colors ${
-                  item.active
-                    ? "bg-accent text-accent-foreground"
-                    : "hover:bg-white/10"
-                }`}
-                style={
-                  item.active
-                    ? { clipPath: "polygon(0 0, 100% 0, calc(100% - 14px) 100%, 14px 100%)" }
-                    : undefined
-                }
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const isActive =
+                item.href === "#"
+                  ? currentHash === "" || currentHash === "#"
+                  : currentHash === item.href;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className={`relative px-5 py-4 flex items-center transition-colors ${
+                    isActive
+                      ? "bg-accent text-accent-foreground"
+                      : "hover:bg-white/10"
+                  }`}
+                  style={
+                    isActive
+                      ? { clipPath: "polygon(0 0, 100% 0, calc(100% - 14px) 100%, 14px 100%)" }
+                      : undefined
+                  }
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </nav>
           <a
             href="#demo"
