@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Phone, Menu, X } from "lucide-react";
+import { MapPin, Phone, Menu } from "lucide-react";
+import { useLocation } from "@tanstack/react-router";
 import {
   Sheet,
   SheetContent,
@@ -19,7 +20,7 @@ const marqueeItems = [
 const navItems = [
   { label: "HOME", href: "#" },
   { label: "INDUSTRIES", href: "#industries" },
-  { label: "APPLICATIONS", href: "#ecosystem", active: true },
+  { label: "APPLICATIONS", href: "#ecosystem" },
   { label: "PROCESS", href: "#process" },
   { label: "RESULTS", href: "#results" },
   { label: "CONTACT", href: "#demo" },
@@ -27,6 +28,19 @@ const navItems = [
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+
+  const currentHash = location.hash;
+
+  useEffect(() => {
+    if (open) {
+      const original = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = original;
+      };
+    }
+  }, [open]);
 
   return (
     <motion.header
