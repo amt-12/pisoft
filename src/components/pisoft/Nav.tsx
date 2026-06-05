@@ -129,26 +129,32 @@ export function Nav() {
 
               <nav className="flex-1 overflow-y-auto py-4">
                 <AnimatePresence>
-                  {navItems.map((item, i) => (
-                    <motion.a
-                      key={item.label}
-                      href={item.href}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.05, duration: 0.3 }}
-                      onClick={() => setOpen(false)}
-                      className={`mx-4 mb-2 flex items-center justify-between rounded-lg px-4 py-3.5 text-sm font-bold tracking-wide transition-colors ${
-                        item.active
-                          ? "bg-accent text-accent-foreground"
-                          : "text-foreground hover:bg-primary/10 hover:text-primary"
-                      }`}
-                    >
-                      {item.label}
-                      {item.active && (
-                        <span className="size-2 rounded-full bg-accent-foreground" />
-                      )}
-                    </motion.a>
-                  ))}
+                  {navItems.map((item, i) => {
+                    const isActive =
+                      item.href === "#"
+                        ? currentHash === "" || currentHash === "#"
+                        : currentHash === item.href;
+                    return (
+                      <motion.a
+                        key={item.label}
+                        href={item.href}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.05, duration: 0.3 }}
+                        onClick={() => setOpen(false)}
+                        className={`mx-4 mb-2 flex items-center justify-between rounded-lg px-4 py-3.5 text-sm font-bold tracking-wide transition-colors ${
+                          isActive
+                            ? "bg-accent text-accent-foreground"
+                            : "text-foreground hover:bg-primary/10 hover:text-primary"
+                        }`}
+                      >
+                        {item.label}
+                        {isActive && (
+                          <span className="size-2 rounded-full bg-accent-foreground" />
+                        )}
+                      </motion.a>
+                    );
+                  })}
                 </AnimatePresence>
 
                 <div className="mx-6 mt-6 pt-6 border-t border-border space-y-5">
