@@ -237,24 +237,30 @@ export function Nav() {
       <div className="hidden lg:block relative bg-primary text-primary-foreground">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 flex items-stretch justify-between">
           <nav className="flex items-stretch text-sm font-semibold tracking-wide">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className={`relative px-5 py-4 flex items-center transition-colors ${
-                  item.active
-                    ? "bg-accent text-accent-foreground"
-                    : "hover:bg-white/10"
-                }`}
-                style={
-                  item.active
-                    ? { clipPath: "polygon(0 0, 100% 0, calc(100% - 14px) 100%, 14px 100%)" }
-                    : undefined
-                }
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const isActive =
+                item.href === "#"
+                  ? currentHash === "" || currentHash === "#"
+                  : currentHash === item.href;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className={`relative px-5 py-4 flex items-center transition-colors ${
+                    isActive
+                      ? "bg-accent text-accent-foreground"
+                      : "hover:bg-white/10"
+                  }`}
+                  style={
+                    isActive
+                      ? { clipPath: "polygon(0 0, 100% 0, calc(100% - 14px) 100%, 14px 100%)" }
+                      : undefined
+                  }
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </nav>
           <a
             href="#demo"
