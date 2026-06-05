@@ -18,7 +18,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-grid opacity-30" />
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
 
-        <div className="relative h-full max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-8 items-center pt-20">
+        <div className="relative h-full max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-8 items-center pt-44">
           {/* Left: text */}
           <div className="relative z-10 text-center lg:text-left">
             <motion.span
