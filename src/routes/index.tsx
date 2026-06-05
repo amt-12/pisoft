@@ -1,9 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Nav } from "@/components/pisoft/Nav";
 import { Hero } from "@/components/pisoft/Hero";
 import { ChaosStory } from "@/components/pisoft/ChaosStory";
 import { Transformation } from "@/components/pisoft/Transformation";
-import { Ecosystem } from "@/components/pisoft/Ecosystem";
 import { DayInLife } from "@/components/pisoft/DayInLife";
 import { DashboardShowcase } from "@/components/pisoft/DashboardShowcase";
 import { Industries } from "@/components/pisoft/Industries";
@@ -34,11 +32,9 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <main className="relative">
-      <Nav />
       <Hero />
       <ChaosStory />
       <Transformation />
-      <Ecosystem />
       <DayInLife />
       <DashboardShowcase />
       <Industries />

@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "@tanstack/react-router";
 
 const modules = ["Sales", "HR", "Inventory", "Payroll", "CRM", "Accounts"];
 
@@ -59,15 +60,19 @@ export function Finale() {
         <p className="mt-6 text-muted-foreground max-w-xl mx-auto">
           Empowering businesses through intelligent technology.
         </p>
-        <motion.a
-          href="#demo"
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-10 inline-flex items-center rounded-full bg-[image:var(--gradient-accent)] px-8 py-4 text-base font-semibold text-accent-foreground glow-accent hover:opacity-95 transition"
+          className="mt-10"
         >
-          Book Your Demo Today
-        </motion.a>
+          <Link
+            to="/demo"
+            className="inline-flex items-center rounded-full bg-[image:var(--gradient-accent)] px-8 py-4 text-base font-semibold text-accent-foreground glow-accent hover:opacity-95 transition"
+          >
+            Book Your Demo Today
+          </Link>
+        </motion.div>
       </div>
 
       <footer className="relative mt-32 pt-10 border-t border-border text-center text-xs text-muted-foreground">

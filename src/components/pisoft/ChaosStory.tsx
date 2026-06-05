@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useTransform, useMotionValueEvent, useInView } from "framer-motion";
 import chaosVideo from "@/assets/i2.mp4";
 
 const days = [
@@ -13,6 +13,8 @@ const days = [
 
 export function ChaosStory() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const isSectionInView = useInView(sectionRef, { amount: 0.1 });
   const [isTimelineCollapsed, setIsTimelineCollapsed] = useState(false);
   const [showCTA, setShowCTA] = useState(false);
 
@@ -20,6 +22,20 @@ export function ChaosStory() {
     target: sectionRef,
     offset: ["start start", "end end"],
   });
+
+  // Play video when the section comes into view, pause when it goes out of view
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isSectionInView) {
+      video.play().catch((err) => {
+        console.warn("Video play was interrupted or prevented:", err);
+      });
+    } else {
+      video.pause();
+    }
+  }, [isSectionInView]);
 
   // Smooth scroll translation for the timeline list
   const timelineY = useTransform(scrollYProgress, [0.05, 0.65], ["0%", "-70%"]);
@@ -38,38 +54,77 @@ export function ChaosStory() {
 
   return (
     <section ref={sectionRef} className="relative h-[280vh] bg-background">
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden py-12">
+      <div className="sticky top-[var(--navbar-height,130px)] h-[calc(100vh-var(--navbar-height,130px))] flex flex-col justify-center overflow-hidden py-12">
         <div className="max-w-6xl mx-auto w-full px-6 flex flex-col h-full justify-between py-6">
           
           {/* Section Header */}
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight max-w-3xl mb-8 md:mb-12 text-center md:text-left shrink-0"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight max-w-3xl mb-8 md:mb-12 text-center md:text-left shrink-0 flex flex-col items-center md:items-start gap-1 md:gap-2"
           >
-            A story <span className="text-gradient-accent">every growing business</span> knows too well.
+            <motion.span
+              variants={{
+                hidden: { opacity: 0, x: -150 },
+                visible: { 
+                  opacity: 1, 
+                  x: 0,
+                  transition: { type: "spring", stiffness: 150, damping: 14 }
+                }
+              }}
+              className="block"
+            >
+              A story <span className="text-gradient-accent">every growing</span>
+            </motion.span>
+            <motion.span
+              variants={{
+                hidden: { opacity: 0, x: -150 },
+                visible: { 
+                  opacity: 1, 
+                  x: 0,
+                  transition: { type: "spring", stiffness: 150, damping: 14, delay: 0.15 }
+                }
+              }}
+              className="block"
+            >
+              <span className="text-gradient-accent">business</span> knows too well.
+            </motion.span>
           </motion.h2>
 
           {/* Side-by-Side Content Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center relative flex-1 min-h-0">
             
             {/* Left Column: Video Wrapper */}
-            <div className="w-full h-[30vh] md:h-[50vh] lg:h-[55vh] flex flex-col justify-center rounded-2xl overflow-hidden border border-border/60 bg-surface/50 backdrop-blur-md shadow-2xl relative">
+            <motion.div
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.2 }}
+              className="w-full h-[30vh] md:h-[50vh] lg:h-[55vh] flex flex-col justify-center rounded-2xl overflow-hidden border border-border/60 bg-surface/50 backdrop-blur-md shadow-2xl relative"
+            >
               <div className="absolute inset-0 bg-gradient-to-tr from-accent/10 via-transparent to-primary/10 pointer-events-none" />
               <video
+                ref={videoRef}
                 src={chaosVideo}
-                autoPlay
                 loop
                 muted
                 playsInline
                 className="w-full h-full object-cover rounded-2xl"
               />
+              {/* Light blue overlay */}
+              <div className="absolute inset-0 bg-sky-500/10 pointer-events-none rounded-2xl" />
               <div className="absolute inset-0 rounded-2xl border border-white/5 pointer-events-none shadow-[inset_0_0_45px_rgba(255,255,255,0.04)]" />
-            </div>
+            </motion.div>
 
             {/* Right Column: Interactive Area */}
-            <div className="relative h-[35vh] md:h-[50vh] lg:h-[55vh] w-full flex items-center justify-center">
+            <motion.div
+              initial={{ opacity: 0, x: 100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.3 }}
+              className="relative h-[35vh] md:h-[50vh] lg:h-[55vh] w-full flex items-center justify-center"
+            >
               
               {/* Container 1: Timeline (collapses horizontally based on state) */}
               <motion.div
@@ -138,7 +193,7 @@ export function ChaosStory() {
                 </div>
               </motion.div>
 
-            </div>
+            </motion.div>
 
           </div>
 

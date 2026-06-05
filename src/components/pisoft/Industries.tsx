@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "@tanstack/react-router";
 import {
   Factory, Store, GraduationCap, HeartPulse,
-  Truck, Package, HardHat, UtensilsCrossed,
+  Truck, Package, HardHat, UtensilsCrossed, ArrowRight,
 } from "lucide-react";
 
 const industries = [
@@ -18,6 +19,15 @@ const industries = [
 
 export function Industries() {
   const [active, setActive] = useState(0);
+
+  // Auto-rotate the active industry every 1 second (1000ms)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActive((prev) => (prev + 1) % industries.length);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   const cur = industries[active];
 
   return (
@@ -62,9 +72,17 @@ export function Industries() {
                 Pisoft adapts module logic, dashboards, and workflows for {cur.name.toLowerCase()} teams.
               </p>
             </div>
-            <div className="mt-8">
-              <div className="text-5xl font-display font-bold text-gradient-accent">{cur.stat}</div>
-              <div className="text-sm text-muted-foreground mt-1">{cur.metric}</div>
+            <div className="mt-8 flex items-end justify-between">
+              <div>
+                <div className="text-5xl font-display font-bold text-gradient-accent">{cur.stat}</div>
+                <div className="text-sm text-muted-foreground mt-1">{cur.metric}</div>
+              </div>
+              <Link
+                to="/industries"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-glow transition-colors"
+              >
+                Learn More <ArrowRight className="size-4" />
+              </Link>
             </div>
           </motion.div>
         </div>
