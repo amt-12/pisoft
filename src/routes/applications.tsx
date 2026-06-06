@@ -230,12 +230,12 @@ const applicationsData = [
   },
 ];
 
-export function ApplicationsPage() {
+function ApplicationsPage() {
   const [activeTab, setActiveTab] = useState(0); // Default to FSME
   const currentApp = applicationsData[activeTab];
 
   return (
-    <main className="relative bg-background text-foreground min-h-screen flex flex-col pt-[140px]">
+    <main className="relative bg-background text-foreground min-h-screen flex flex-col pt-[var(--navbar-height,130px)]">
 
       {/* Redesigned Hero Header Section */}
       <section className="relative bg-slate-950 py-16 md:py-24 overflow-hidden border-b border-border">

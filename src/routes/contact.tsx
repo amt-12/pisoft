@@ -24,7 +24,7 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-export function ContactPage() {
+function ContactPage() {
   // Form submission states
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -54,7 +54,7 @@ export function ContactPage() {
   };
 
   return (
-    <main className="relative bg-background text-foreground min-h-screen flex flex-col pt-[140px]">
+    <main className="relative bg-background text-foreground min-h-screen flex flex-col pt-[var(--navbar-height,130px)]">
 
       {/* Redesigned Hero Header Section */}
       <section className="relative bg-slate-950 py-16 md:py-24 overflow-hidden border-b border-border">

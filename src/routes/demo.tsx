@@ -29,7 +29,7 @@ export const Route = createFileRoute("/demo")({
   component: DemoPage,
 });
 
-export function DemoPage() {
+function DemoPage() {
   // Form submission states
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -75,7 +75,7 @@ export function DemoPage() {
   };
 
   return (
-    <main className="relative bg-background text-foreground min-h-screen flex flex-col pt-[140px]">
+    <main className="relative bg-background text-foreground min-h-screen flex flex-col pt-[var(--navbar-height,130px)]">
 
       {/* Redesigned Hero Header Section */}
       <section className="relative bg-slate-950 py-12 md:py-16 overflow-hidden border-b border-border">

@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useMotionValueEvent, useInView } from "framer-motion";
 import { Sunrise, Sun, CloudSun, Moon, Zap } from "lucide-react";
 import dayInLifeVideo from "@/assets/i4.mp4";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const moments = [
   { Icon: Sunrise, time: "Morning", title: "Autopilot Morning", body: "Open the dashboard. Sales performance is already there.", tone: "from-accent/40 to-transparent" },
@@ -15,6 +16,7 @@ export function DayInLife() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const isMobile = useIsMobile();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -31,7 +33,7 @@ export function DayInLife() {
   });
 
   useEffect(() => {
-    if (isSectionInView) {
+    if (isSectionInView || isMobile) {
       const video = videoRef.current;
       if (video) {
         video.play().catch((err) => {
@@ -39,7 +41,7 @@ export function DayInLife() {
         });
       }
     }
-  }, [isSectionInView]);
+  }, [isSectionInView, isMobile]);
 
   // Set initial frame when metadata is loaded
   useEffect(() => {
@@ -50,6 +52,63 @@ export function DayInLife() {
 
   // Vertical scroll translation for the left column list
   const timelineY = useTransform(scrollYProgress, [0.05, 0.85], ["0%", "-55%"]);
+
+  if (isMobile) {
+    return (
+      <section ref={sectionRef} className="relative bg-background py-16 px-6">
+        <div className="max-w-6xl mx-auto w-full flex flex-col gap-10">
+          {/* Section Header */}
+          <div className="text-center">
+            <div className="text-xs uppercase tracking-[0.2em] text-accent">A day in the life</div>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground font-display">
+              Your business, <span className="text-gradient-accent">on autopilot.</span>
+            </h2>
+          </div>
+
+          {/* Video Container */}
+          <div className="w-full aspect-video rounded-2xl overflow-hidden border border-border/60 bg-surface/50 backdrop-blur-md shadow-lg relative">
+            <video
+              ref={videoRef}
+              src={dayInLifeVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-sky-500/10 pointer-events-none" />
+          </div>
+
+          {/* Timeline List */}
+          <div className="relative pl-6 py-2 overflow-hidden flex flex-col justify-start">
+            {/* Vertical timeline line */}
+            <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-border to-transparent" />
+
+            <div className="flex flex-col gap-10 pt-2">
+              {moments.map((m) => (
+                <div key={m.time} className="relative flex flex-col items-start">
+                  {/* Glow dot timeline node */}
+                  <div className="absolute -left-[31px] top-1.5 size-3.5 rounded-full bg-background border-2 border-accent flex items-center justify-center shadow-[0_0_10px_rgba(234,88,12,0.5)]">
+                    <m.Icon className="size-2 text-accent" />
+                  </div>
+
+                  <div className="text-xs uppercase tracking-[0.2em] text-accent mb-1 font-semibold">
+                    {m.time}
+                  </div>
+                  <h3 className="text-lg font-semibold mb-1">
+                    {m.title}
+                  </h3>
+                  <p className="text-muted-foreground text-xs leading-relaxed">
+                    {m.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section ref={sectionRef} className="relative h-[250vh] bg-background">

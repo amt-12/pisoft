@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import { MapPin, Phone } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { MapPin, Phone, Menu, X } from "lucide-react";
 import { Link, useLocation } from "@tanstack/react-router";
 
 const marqueeItems = [
@@ -21,7 +21,19 @@ const navItems = [
 
 export function Nav() {
   const [showMarquee, setShowMarquee] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -159,6 +171,15 @@ export function Nav() {
               </div>
             </div>
           </div>
+
+          {/* Mobile hamburger menu button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden p-2 rounded-lg hover:bg-muted/80 transition-colors text-foreground focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+          </button>
         </div>
       </div>
 
@@ -195,6 +216,102 @@ export function Nav() {
           </Link>
         </div>
       </div>
+
+      {/* Mobile navigation drawer overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 lg:hidden"
+            />
+            {/* Slide-in Drawer */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 bottom-0 w-full max-w-xs bg-background border-l border-border z-50 p-6 flex flex-col justify-between shadow-[var(--shadow-elevated)] lg:hidden"
+            >
+              <div>
+                {/* Drawer Header */}
+                <div className="flex items-center justify-between pb-6 border-b border-border">
+                  <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
+                    <div className="relative size-8 rounded-lg bg-[image:var(--gradient-primary)] grid place-items-center">
+                      <span className="text-xs font-bold text-primary-foreground font-display">P</span>
+                    </div>
+                    <span className="font-display text-xl tracking-tight">
+                      <span className="text-primary font-bold">pisoft</span>
+                      <span className="text-accent font-bold">ERP</span>
+                    </span>
+                  </Link>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="p-2 rounded-lg hover:bg-muted/80 transition-colors text-foreground focus:outline-none"
+                    aria-label="Close menu"
+                  >
+                    <X className="size-5" />
+                  </button>
+                </div>
+
+                {/* Navigation Links */}
+                <nav className="flex flex-col gap-4 mt-8">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.label}
+                      to={item.to}
+                      hash={item.hash}
+                      onClick={() => setIsOpen(false)}
+                      className={`text-base font-semibold tracking-wide py-2 transition-colors ${
+                        item.active
+                          ? "text-accent"
+                          : "text-foreground hover:text-primary"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </nav>
+              </div>
+
+              {/* Contact Information & Action */}
+              <div className="pt-6 border-t border-border flex flex-col gap-5">
+                <div className="flex items-center gap-3">
+                  <div className="size-9 grid place-items-center rounded-full bg-primary/10 text-primary shrink-0">
+                    <MapPin className="size-4.5" />
+                  </div>
+                  <div className="leading-tight">
+                    <div className="text-[10px] tracking-[0.2em] text-muted-foreground font-semibold">FIND US</div>
+                    <div className="text-xs font-semibold text-foreground">Phase 8-B, Mohali</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="size-9 grid place-items-center rounded-full bg-accent/10 text-accent shrink-0">
+                    <Phone className="size-4.5" />
+                  </div>
+                  <div className="leading-tight">
+                    <div className="text-[10px] tracking-[0.2em] text-muted-foreground font-semibold">CALL US TODAY</div>
+                    <a href="tel:+918288029930" className="text-xs font-semibold text-foreground hover:text-primary transition">
+                      +91-8288029930
+                    </a>
+                  </div>
+                </div>
+                <Link
+                  to="/demo"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full text-center rounded-full bg-[image:var(--gradient-accent)] py-3 text-xs font-bold text-accent-foreground glow-accent hover:opacity-95 transition"
+                >
+                  TRY FREE DEMO
+                </Link>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

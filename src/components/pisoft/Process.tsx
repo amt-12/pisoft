@@ -18,7 +18,7 @@ export function Process() {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute left-0 right-0 top-7 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+          <div className="hidden md:block absolute left-0 right-0 top-7 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
           <div className="grid grid-cols-2 md:grid-cols-7 gap-6">
             {steps.map((s, i) => (
               <motion.div

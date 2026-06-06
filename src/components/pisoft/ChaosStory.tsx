@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useMotionValueEvent, useInView } from "framer-motion";
 import chaosVideo from "@/assets/i2.mp4";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const days = [
   { day: "Day 1", title: "Everything feels manageable", body: "Spreadsheets work. WhatsApp groups handle updates. The team moves fast." },
@@ -17,6 +18,7 @@ export function ChaosStory() {
   const isSectionInView = useInView(sectionRef, { amount: 0.1 });
   const [isTimelineCollapsed, setIsTimelineCollapsed] = useState(false);
   const [showCTA, setShowCTA] = useState(false);
+  const isMobile = useIsMobile();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -28,14 +30,14 @@ export function ChaosStory() {
     const video = videoRef.current;
     if (!video) return;
 
-    if (isSectionInView) {
+    if (isSectionInView || isMobile) {
       video.play().catch((err) => {
         console.warn("Video play was interrupted or prevented:", err);
       });
     } else {
       video.pause();
     }
-  }, [isSectionInView]);
+  }, [isSectionInView, isMobile]);
 
   // Smooth scroll translation for the timeline list
   const timelineY = useTransform(scrollYProgress, [0.05, 0.65], ["0%", "-70%"]);
@@ -51,6 +53,77 @@ export function ChaosStory() {
       setShowCTA(false);
     }
   });
+
+  if (isMobile) {
+    return (
+      <section ref={sectionRef} className="relative bg-background py-16 px-6">
+        <div className="max-w-6xl mx-auto w-full flex flex-col gap-10">
+          {/* Section Header */}
+          <div className="text-center">
+            <h2 className="text-3xl font-bold tracking-tight leading-tight text-foreground font-display">
+              A story <span className="text-gradient-accent">every growing</span> <span className="text-gradient-accent">business</span> knows too well.
+            </h2>
+          </div>
+
+          {/* Video Container */}
+          <div className="w-full aspect-video rounded-2xl overflow-hidden border border-border/60 bg-surface/50 backdrop-blur-md shadow-lg relative">
+            <video
+              ref={videoRef}
+              src={chaosVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-sky-500/10 pointer-events-none" />
+          </div>
+
+          {/* Timeline list */}
+          <div className="relative pl-6 py-2 overflow-hidden flex flex-col justify-start">
+            {/* Vertical timeline line */}
+            <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-border to-transparent" />
+
+            <div className="flex flex-col gap-10 pt-2">
+              {days.map((d) => (
+                <div key={d.day} className="relative flex flex-col items-start">
+                  {/* Glow dot timeline node */}
+                  <div className="absolute -left-[31px] top-1.5 size-3.5 rounded-full bg-background border-2 border-accent flex items-center justify-center shadow-[0_0_10px_rgba(234,88,12,0.5)]">
+                    <div className="size-1 rounded-full bg-accent" />
+                  </div>
+
+                  <div className="text-xs uppercase tracking-[0.2em] text-accent mb-1 font-semibold">
+                    {d.day}
+                  </div>
+                  <h3 className="text-lg font-semibold mb-1">
+                    {d.title}
+                  </h3>
+                  <p className="text-muted-foreground text-xs leading-relaxed">
+                    {d.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA Card */}
+          <div className="rounded-2xl border border-border bg-surface/80 p-8 text-center shadow-md">
+            <h3 className="text-2xl font-bold font-display tracking-tight leading-tight">
+              Does this <span className="text-gradient-accent">sound familiar</span>?
+            </h3>
+            <p className="mt-3 text-muted-foreground text-xs leading-relaxed max-w-sm mx-auto">
+              You don't have to stay stuck in firefighting mode. Pisoft unifies your spreadsheets, chats, and tools into a single source of truth.
+            </p>
+            <div className="mt-6 flex justify-center">
+              <a href="#demo" className="inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-accent)] px-6 py-3 text-sm font-semibold text-accent-foreground glow-accent hover:opacity-95 transition">
+                Get Started
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section ref={sectionRef} className="relative h-[280vh] bg-background">
