@@ -22,7 +22,7 @@ export function Services() {
         >
           <div className="text-xs uppercase tracking-[0.2em] text-accent">Beyond ERP</div>
           <h2 className="mt-3 text-4xl md:text-6xl font-bold tracking-tight">
-            Technology solutions <span className="text-gradient-primary">that compound.</span>
+            Industries <span className="text-gradient-primary">We Cater.</span>
           </h2>
           <p className="mt-6 text-muted-foreground">
             Pisoft is also your long-term technology partner — helping you build complete digital ecosystems.

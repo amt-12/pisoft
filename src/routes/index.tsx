@@ -38,12 +38,10 @@ function Index() {
       <DayInLife />
       <DashboardShowcase />
       <Industries />
-      <Results />
+      {/* <Results /> */}
       <Services />
       <Process />
       <Demo />
-      <Trust />
-      <Finale />
     </main>
   );
 }

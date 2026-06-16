@@ -12,6 +12,8 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Nav } from "@/components/pisoft/Nav";
+import { Footer } from "@/components/pisoft/Footer";
+import { ConsultantBanner } from "@/components/pisoft/ConsultantBanner";
 
 function NotFoundComponent() {
   return (
@@ -119,9 +121,15 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Nav />
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="flex flex-col min-h-screen bg-background text-foreground">
+        <Nav />
+        <div className="flex-1">
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </div>
+        <ConsultantBanner />
+        <Footer />
+      </div>
     </QueryClientProvider>
   );
 }

@@ -31,7 +31,7 @@ export function Industries() {
   const cur = industries[active];
 
   return (
-    <section id="industries" className="relative py-32 px-6">
+    <section id="industries" className="relative  px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

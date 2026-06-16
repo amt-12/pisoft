@@ -588,30 +588,6 @@ function NewsPage() {
         </div>
       </section>
 
-      {/* Get Your Free Consultant CTA Section */}
-      <section className="bg-slate-900 border-y border-slate-800 py-16 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-5 pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-96 rounded-full bg-accent blur-3xl opacity-10 pointer-events-none" />
-
-        <div className="max-w-4xl mx-auto rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900/90 to-primary/10 border border-slate-800 p-8 md:p-12 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="max-w-xl text-center md:text-left">
-            <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight font-display uppercase">
-              GET YOUR FREE CONSULTATION
-            </h2>
-            <p className="mt-3 text-sm text-slate-400 leading-relaxed">
-              We are a dedicated software architecture and ERP development team that offers design, module customisation, and database build services for your business from initial sketches to final production deployment.
-            </p>
-          </div>
-          <Link
-            to="/"
-            hash="demo"
-            className="group flex items-center justify-center gap-2 rounded-xl bg-accent text-accent-foreground px-6 py-4.5 text-sm font-semibold tracking-wide shadow-lg hover:opacity-95 transition-opacity shrink-0 w-full md:w-auto"
-          >
-            CONTACT OUR ARCHITECTS
-            <ArrowRight className="size-4 group-hover:translate-x-0.5 transition" />
-          </Link>
-        </div>
-      </section>
 
       
     </main>
