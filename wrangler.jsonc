@@ -2,5 +2,9 @@
   "name": "pisoft",
   "compatibility_date": "2026-06-18",
   "main": "dist/server/server.js",
-  "compatibility_flags": ["nodejs_compat"]
+  "compatibility_flags": ["nodejs_compat"],
+
+  "assets": {
+    "directory": "./dist/client"
+  }
 }
