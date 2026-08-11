@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
+import logoErp from "@/assets/logoerp.png";
 import {
   MapPin,
   Phone,
@@ -98,39 +99,36 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative bg-slate-950 text-slate-200 border-t border-slate-900 pt-20 pb-8 overflow-hidden z-20">
+    <footer className="relative bg-[linear-gradient(to_top,#f77f00_0%,#ffffff_50%,#1777b8_100%)] text-slate-900 border-t border-slate-300/80 pt-20 pb-8 overflow-hidden z-20">
       {/* Background aesthetics */}
       <div className="absolute inset-0 bg-grid opacity-10 pointer-events-none" />
       
       {/* Dynamic blurred orbs */}
-      <div className="absolute top-1/4 left-1/10 size-80 rounded-full bg-primary/10 blur-3xl pointer-events-none animate-pulse-glow" />
-      <div className="absolute bottom-1/4 right-1/10 size-96 rounded-full bg-accent/5 blur-3xl pointer-events-none" style={{ animationDelay: "1.5s" }} />
+      <div className="absolute top-1/4 left-1/10 size-80 rounded-full bg-white/40 blur-3xl pointer-events-none animate-pulse-glow" />
+      <div className="absolute bottom-1/4 right-1/10 size-96 rounded-full bg-accent/20 blur-3xl pointer-events-none" style={{ animationDelay: "1.5s" }} />
 
       <div className="relative max-w-7xl mx-auto px-6 z-10">
         
         {/* Upper footer grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-16 border-b border-slate-900">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-16 border-b border-slate-300/80">
           
           {/* Column 1: About Pisoft (Span 4) */}
           <div className="lg:col-span-4 flex flex-col gap-6">
             <Link to="/" className="flex items-center gap-2.5 w-fit">
-              <div className="relative size-9 rounded-lg bg-[image:var(--gradient-primary)] grid place-items-center shadow-[var(--shadow-glow-primary)]">
-                <span className="text-sm font-bold text-primary-foreground font-display">P</span>
-                <span className="absolute -right-1 -bottom-1 size-2.5 rounded-full bg-accent ring-2 ring-slate-950" />
-              </div>
-              <span className="font-display text-2xl tracking-tight">
-                <span className="text-white font-bold">pisoft</span>
-                <span className="text-accent font-bold">ERP</span>
-              </span>
+              <img
+                src={logoErp}
+                alt="Pisoft ERP"
+                className="h-20 md:h-24 w-auto object-contain rounded-md"
+              />
             </Link>
             
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <p className="text-sm text-slate-800 leading-relaxed font-medium">
               We, Pisoft Informatics Pvt. Ltd, are a rapidly growing Mohali (Punjab) based IT company, providing enterprise ERP Solutions, Software development, and business automation platforms.
             </p>
 
             <button
               onClick={() => setIsAboutOpen(true)}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:text-accent-glow transition-colors group w-fit"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-950 hover:text-primary transition-colors group w-fit"
             >
               <span>Read More</span>
               <ChevronRight className="size-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -142,7 +140,7 @@ export function Footer() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noreferrer"
-                className="size-9 rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-primary/20 hover:border-primary hover:text-white transition-all flex items-center justify-center group shadow-md"
+                className="size-9 rounded-lg border border-slate-300 bg-white/80 text-slate-800 hover:bg-slate-900 hover:text-white transition-all flex items-center justify-center group shadow-md"
                 aria-label="LinkedIn"
               >
                 <svg className="size-4.5 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -155,7 +153,7 @@ export function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noreferrer"
-                className="size-9 rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-sky-500/20 hover:border-sky-500 hover:text-white transition-all flex items-center justify-center group shadow-md"
+                className="size-9 rounded-lg border border-slate-300 bg-white/80 text-slate-800 hover:bg-slate-900 hover:text-white transition-all flex items-center justify-center group shadow-md"
                 aria-label="Twitter"
               >
                 <svg className="size-4.5 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -166,7 +164,7 @@ export function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noreferrer"
-                className="size-9 rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-blue-600/20 hover:border-blue-600 hover:text-white transition-all flex items-center justify-center group shadow-md"
+                className="size-9 rounded-lg border border-slate-300 bg-white/80 text-slate-800 hover:bg-slate-900 hover:text-white transition-all flex items-center justify-center group shadow-md"
                 aria-label="Facebook"
               >
                 <svg className="size-4.5 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -174,10 +172,10 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="https://pisoft.in"
+                href="https://www.pisoftinformatics.com/"
                 target="_blank"
                 rel="noreferrer"
-                className="size-9 rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-accent/20 hover:border-accent hover:text-accent-glow transition-all flex items-center justify-center group shadow-md"
+                className="size-9 rounded-lg border border-slate-300 bg-white/80 text-slate-800 hover:bg-slate-900 hover:text-white transition-all flex items-center justify-center group shadow-md"
                 aria-label="Website"
               >
                 <svg className="size-4.5 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -191,7 +189,7 @@ export function Footer() {
 
           {/* Column 2: Important Links (Span 2) */}
           <div className="lg:col-span-2 flex flex-col gap-5">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Important Links</h3>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-950">Important Links</h3>
             <ul className="flex flex-col gap-3">
               {[
                 { label: "Home", to: "/" },
@@ -203,18 +201,18 @@ export function Footer() {
                   {link.onClick ? (
                     <button
                       onClick={link.onClick}
-                      className="text-sm text-slate-400 hover:text-white transition-colors relative py-0.5 group w-fit flex items-center"
+                      className="text-sm font-medium text-slate-800 hover:text-slate-950 transition-colors relative py-0.5 group w-fit flex items-center"
                     >
                       <span className="relative z-10">{link.label}</span>
-                      <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-accent group-hover:w-full group-hover:left-0 transition-all duration-300" />
+                      <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-slate-900 group-hover:w-full group-hover:left-0 transition-all duration-300" />
                     </button>
                   ) : (
                     <Link
                       to={link.to}
-                      className="text-sm text-slate-400 hover:text-white transition-colors relative py-0.5 group w-fit flex items-center"
+                      className="text-sm font-medium text-slate-800 hover:text-slate-950 transition-colors relative py-0.5 group w-fit flex items-center"
                     >
                       <span className="relative z-10">{link.label}</span>
-                      <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-accent group-hover:w-full group-hover:left-0 transition-all duration-300" />
+                      <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-slate-900 group-hover:w-full group-hover:left-0 transition-all duration-300" />
                     </Link>
                   )}
                 </li>
@@ -224,7 +222,7 @@ export function Footer() {
 
           {/* Column 3: Quick Links (Span 2) */}
           <div className="lg:col-span-2 flex flex-col gap-5">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Quick Links</h3>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-950">Quick Links</h3>
             <ul className="flex flex-col gap-3">
               {[
                 { label: "ERP Training", to: "/news" },
@@ -236,10 +234,10 @@ export function Footer() {
                   <Link
                     to={link.to}
                     hash={link.hash}
-                    className="text-sm text-slate-400 hover:text-white transition-colors relative py-0.5 group w-fit flex items-center"
+                    className="text-sm font-medium text-slate-800 hover:text-slate-950 transition-colors relative py-0.5 group w-fit flex items-center"
                   >
                     <span className="relative z-10">{link.label}</span>
-                    <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-primary group-hover:w-full group-hover:left-0 transition-all duration-300" />
+                    <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-slate-900 group-hover:w-full group-hover:left-0 transition-all duration-300" />
                   </Link>
                 </li>
               ))}
@@ -249,10 +247,10 @@ export function Footer() {
           {/* Column 4: Newsletter & Live Clock (Span 4) */}
           <div className="lg:col-span-4 flex flex-col gap-6">
             <div className="flex flex-col gap-2">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
-      STAY CONNECTED
+              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-950 flex items-center gap-1.5">
+                STAY CONNECTED
               </h3>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-800 font-medium">
                 Subscribe to our tech newsletter for custom scripts and ERP updates.
               </p>
             </div>
@@ -265,17 +263,17 @@ export function Footer() {
                 placeholder="name@company.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full text-xs px-4 py-3.5 pr-28 rounded-xl border border-slate-800 bg-slate-900/40 text-white placeholder-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full text-xs px-4 py-3.5 pr-28 rounded-xl border border-slate-300 bg-white/90 text-slate-900 placeholder-slate-500 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all shadow-sm"
               />
               <button
                 type="submit"
                 disabled={isSubmitting || isSubscribed}
-                className="absolute right-1.5 top-1.5 bottom-1.5 rounded-lg bg-gradient-to-r from-red-600 to-rose-600 px-4 text-[10px] font-bold text-white shadow-md hover:opacity-95 active:scale-98 transition flex items-center justify-center gap-1 min-w-[80px]"
+                className="absolute right-1.5 top-1.5 bottom-1.5 rounded-lg bg-slate-950 px-4 text-[10px] font-bold text-white shadow-md hover:bg-slate-800 active:scale-98 transition flex items-center justify-center gap-1 min-w-[80px]"
               >
                 {isSubmitting ? (
                   <div className="size-3.5 border border-white/30 border-t-white rounded-full animate-spin" />
                 ) : isSubscribed ? (
-                  <Check className="size-3.5" />
+                  <Check className="size-3.5 text-emerald-400" />
                 ) : (
                   <>
                     <span>SUBMIT</span>
@@ -291,7 +289,7 @@ export function Footer() {
                   initial={{ opacity: 0, y: -5 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
-                  className="flex items-center gap-1.5 text-[10px] font-semibold text-emerald-500"
+                  className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-700"
                 >
                   <ShieldCheck className="size-4" />
                   <span>Subscription confirmed! Thank you.</span>
@@ -300,22 +298,22 @@ export function Footer() {
             </AnimatePresence>
 
             {/* Live Clock / Tech Hub Widget */}
-            <div className="p-3.5 rounded-xl border border-slate-900 bg-slate-950/80 flex items-center justify-between gap-4 mt-2">
+            <div className="p-3.5 rounded-xl border border-slate-300/80 bg-white/80 backdrop-blur-md flex items-center justify-between gap-4 mt-2 shadow-sm">
               <div className="flex items-center gap-2.5">
                 <div className="size-2 rounded-full bg-emerald-500 animate-pulse" />
                 <div className="leading-none">
-                  <div className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">HQ STATUS</div>
-                  <div className="text-xs font-bold text-slate-300 mt-1">OPERATIONAL</div>
+                  <div className="text-[10px] text-slate-600 uppercase tracking-widest font-bold">HQ STATUS</div>
+                  <div className="text-xs font-extrabold text-slate-900 mt-1">OPERATIONAL</div>
                 </div>
               </div>
               
-              <div className="h-6 w-px bg-slate-900" />
+              <div className="h-6 w-px bg-slate-300" />
 
               <div className="flex items-center gap-2">
-                <Clock className="size-4 text-slate-500" />
+                <Clock className="size-4 text-slate-700" />
                 <div className="leading-none text-right">
-                  <div className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">MOHALI, IN</div>
-                  <div className="text-xs font-bold text-slate-300 font-mono mt-1">
+                  <div className="text-[10px] text-slate-600 uppercase tracking-widest font-bold">MOHALI, IN</div>
+                  <div className="text-xs font-bold text-slate-900 font-mono mt-1">
                     {indiaTime || "Loading..."}
                   </div>
                 </div>
@@ -327,26 +325,26 @@ export function Footer() {
         </div>
 
         {/* Lower footer grid: Contact details / copy items */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 py-10 border-b border-slate-900 text-sm">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 py-10 border-b border-slate-300/80 text-sm">
           
           {/* Address Details */}
-          <div className="flex gap-3.5 items-start p-4 rounded-xl border border-slate-900/50 bg-slate-950/40 hover:bg-slate-900/10 hover:border-slate-800 transition duration-300">
-            <div className="size-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
+          <div className="flex gap-3.5 items-start p-4 rounded-xl border border-slate-300/80 bg-white/70 backdrop-blur-md hover:bg-white/90 transition duration-300 shadow-sm">
+            <div className="size-9 rounded-lg bg-slate-900 text-white flex items-center justify-center shrink-0">
               <MapPin className="size-4.5" />
             </div>
             <div className="flex-1">
-              <div className="text-[10px] font-bold text-slate-500 tracking-widest uppercase">Office Location</div>
-              <p className="text-xs text-slate-300 mt-1.5 leading-relaxed">
+              <div className="text-[10px] font-bold text-slate-700 tracking-widest uppercase">Office Location</div>
+              <p className="text-xs text-slate-900 font-medium mt-1.5 leading-relaxed">
                 Plot No. C-86(Second Floor), Phase 7, Industrial Area, Mohali, Punjab, India
               </p>
               <button
                 onClick={handleCopyAddress}
-                className="mt-2 text-[10px] font-semibold text-slate-500 hover:text-white flex items-center gap-1.5 transition"
+                className="mt-2 text-[10px] font-semibold text-slate-700 hover:text-slate-950 flex items-center gap-1.5 transition"
               >
                 {copiedAddress ? (
                   <>
-                    <Check className="size-3 text-emerald-500" />
-                    <span className="text-emerald-500 font-bold">Copied!</span>
+                    <Check className="size-3 text-emerald-600" />
+                    <span className="text-emerald-700 font-bold">Copied!</span>
                   </>
                 ) : (
                   <>
@@ -359,31 +357,31 @@ export function Footer() {
           </div>
 
           {/* Phone Details */}
-          <div className="flex gap-3.5 items-start p-4 rounded-xl border border-slate-900/50 bg-slate-950/40 hover:bg-slate-900/10 hover:border-slate-800 transition duration-300">
-            <div className="size-9 rounded-lg bg-accent/10 text-accent flex items-center justify-center shrink-0">
+          <div className="flex gap-3.5 items-start p-4 rounded-xl border border-slate-300/80 bg-white/70 backdrop-blur-md hover:bg-white/90 transition duration-300 shadow-sm">
+            <div className="size-9 rounded-lg bg-slate-900 text-white flex items-center justify-center shrink-0">
               <Phone className="size-4.5" />
             </div>
             <div className="flex-1">
-              <div className="text-[10px] font-bold text-slate-500 tracking-widest uppercase">Call Direct</div>
+              <div className="text-[10px] font-bold text-slate-700 tracking-widest uppercase">Direct Hotline</div>
               <a
                 href="tel:+918288029930"
-                className="text-xs font-bold text-slate-200 mt-1.5 block hover:text-accent transition"
+                className="text-xs font-bold text-slate-900 mt-1.5 block hover:text-slate-950 transition"
               >
                 +91-8288029930
               </a>
               <button
                 onClick={handleCopyPhone}
-                className="mt-2 text-[10px] font-semibold text-slate-500 hover:text-white flex items-center gap-1.5 transition"
+                className="mt-2 text-[10px] font-semibold text-slate-700 hover:text-slate-950 flex items-center gap-1.5 transition"
               >
                 {copiedPhone ? (
                   <>
-                    <Check className="size-3 text-emerald-500" />
-                    <span className="text-emerald-500 font-bold">Copied!</span>
+                    <Check className="size-3 text-emerald-600" />
+                    <span className="text-emerald-700 font-bold">Copied!</span>
                   </>
                 ) : (
                   <>
                     <Copy className="size-3" />
-                    <span>Copy Number</span>
+                    <span>Copy Phone</span>
                   </>
                 )}
               </button>
@@ -391,19 +389,19 @@ export function Footer() {
           </div>
 
           {/* Email Support details */}
-          <div className="flex gap-3.5 items-start p-4 rounded-xl border border-slate-900/50 bg-slate-950/40 hover:bg-slate-900/10 hover:border-slate-800 transition duration-300">
-            <div className="size-9 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0">
+          <div className="flex gap-3.5 items-start p-4 rounded-xl border border-slate-300/80 bg-white/70 backdrop-blur-md hover:bg-white/90 transition duration-300 shadow-sm">
+            <div className="size-9 rounded-lg bg-slate-900 text-white flex items-center justify-center shrink-0">
               <Mail className="size-4.5" />
             </div>
             <div className="flex-1">
-              <div className="text-[10px] font-bold text-slate-500 tracking-widest uppercase">Inquiries & Support</div>
+              <div className="text-[10px] font-bold text-slate-700 tracking-widest uppercase">Sales & Support</div>
               <a
                 href="mailto:contact@pisoft.in"
-                className="text-xs font-bold text-slate-200 mt-1.5 block hover:text-emerald-500 transition"
+                className="text-xs font-bold text-slate-900 mt-1.5 block hover:text-slate-950 transition"
               >
                 contact@pisoft.in
               </a>
-              <div className="text-[10px] text-slate-500 mt-2 flex items-center gap-1">
+              <div className="text-[10px] text-slate-700 font-semibold mt-2 flex items-center gap-1">
                 <Clock className="size-3" />
                 <span>Response in 12hrs</span>
               </div>
@@ -413,19 +411,19 @@ export function Footer() {
         </div>
 
         {/* Footer bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 text-[11px] text-slate-500">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 text-[11px] text-slate-800 font-medium">
           <div className="text-center sm:text-left leading-relaxed">
-            <p>© Copyright 2017 - {new Date().getFullYear()} PisoftERP, All Rights Reserved.</p>
-            <p className="mt-0.5">Designed by Pisoft Informatics Pvt. Ltd.</p>
+            <div className="font-extrabold text-xs font-display text-slate-950">Pisoft</div>
+            <div className="text-slate-900 font-bold text-[11px]">Build Better. Operate Smarter. Grow Further.</div>
+            <p className="mt-1">© 2017–2026 Pisoft Informatics Pvt. Ltd. All Rights Reserved.</p>
+            <p className="mt-0.5 text-slate-700">Designed & Developed by Pisoft Informatics Pvt. Ltd.</p>
           </div>
           
           <div className="flex items-center gap-6">
-            <a href="https://pisoft.in" target="_blank" rel="noreferrer" className="hover:text-slate-300 transition flex items-center gap-1">
+            <a href="https://www.pisoftinformatics.com/" target="_blank" rel="noreferrer" className="hover:text-slate-950 transition flex items-center gap-1 font-semibold">
               <span>Primary Website</span>
               <ExternalLink className="size-3" />
             </a>
-            <span>•</span>
-            <Link to="/contact" className="hover:text-slate-300 transition">Office Map</Link>
           </div>
         </div>
 

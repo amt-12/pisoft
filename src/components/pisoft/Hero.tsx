@@ -28,17 +28,9 @@ export function Hero() {
 
       {/* Hero Content */}
       <div className="relative z-10 w-full max-w-4xl mx-auto px-6 text-center">
-        <motion.span
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 backdrop-blur px-4 py-1.5 text-xs text-muted-foreground mb-6"
-        >
-          <span className="size-1.5 rounded-full bg-accent animate-pulse" />
-          ERP, reimagined for growing Businesses
-        </motion.span>
-        
-        <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.2]">
+
+
+        <h1 className="mt-14 md:mt-20 lg:mt-24 font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.2]">
           <span className="text-2xl md:text-3xl lg:text-4xl font-normal text-muted-foreground">Your</span>{" "}
           <motion.span
             initial={{ y: -150, opacity: 0 }}
@@ -76,29 +68,40 @@ export function Hero() {
             </motion.span>
           </span>
         </h1>
-        
+
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9 }}
-          className="mt-6 max-w-2xl mx-auto text-base md:text-lg text-muted-foreground"
+          className="mt-8 max-w-3xl mx-auto text-base md:text-lg text-muted-foreground leading-relaxed font-sans"
         >
-          Spreadsheets, WhatsApp groups, scattered tools — Pisoft converges the chaos into one
-          intelligent business ecosystem.
+          Your business shouldn't have to depend on spreadsheets, disconnected applications, endless WhatsApp conversations, and manual reporting.
+          <strong className="block mt-4 md:mt-5 text-foreground font-semibold">Pisoft ERP brings your people, processes, data, and decisions together into one intelligent business ecosystem built around the way your business actually works.</strong>
         </motion.p>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-3"
+          className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
-          <Link to="/demo" className="group inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-accent)] px-6 py-3 text-sm font-semibold text-accent-foreground glow-accent hover:opacity-95 transition">
-            Book Demo <ArrowRight className="size-4 group-hover:translate-x-0.5 transition" />
+          <Link to="/demo" className="group inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-accent)] px-7 py-3.5 text-sm font-bold text-accent-foreground glow-accent hover:opacity-95 transition-all shadow-lg">
+            <span>Book a Free ERP Demo</span>
+            <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
           </Link>
-          <a href="#dashboard" className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-6 py-3 text-sm font-medium hover:bg-secondary transition">
-            <Play className="size-4" /> Watch Product Tour
+          <a href="#erp" className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-surface/90 backdrop-blur px-7 py-3.5 text-sm font-bold hover:bg-secondary transition-all">
+            <span>Explore Pisoft ERP</span>
           </a>
+        </motion.div>
+
+        {/* Visual Statement Sub-Badge */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.3 }}
+          className="mt-12 text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground/70"
+        >
+          One Business. One Connected System.
         </motion.div>
       </div>
     </section>

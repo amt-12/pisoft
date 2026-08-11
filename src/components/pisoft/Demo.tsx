@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, Calendar as CalendarIcon, Clock, User, Mail, Sparkles, BookOpen } from "lucide-react";
+import { Check, Calendar as CalendarIcon, Clock, User, Mail, Sparkles, BookOpen, Building, Phone, Users, Layers, MessageSquare, ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import lottie from "lottie-web";
 import bookData from "@/assets/book.json";
@@ -11,27 +11,32 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-const benefits = [
-  "Live product walkthrough tailored to your workflows",
-  "Industry-specific database & dashboard demo",
-  "One-on-one expert architecture consultation",
-  "Custom implementation roadmap & pricing guidance",
+const demoIncludes = [
+  { title: "Live Product Walkthrough", desc: "Explore the platform with our engineering team." },
+  { title: "Industry-Specific Demonstration", desc: "See relevant applications and workflows for your business." },
+  { title: "Business Process Discussion", desc: "Tell us how your business works and where you're facing challenges." },
+  { title: "Implementation Guidance", desc: "Understand how Pisoft can fit into your existing operations." },
+  { title: "Pricing & Roadmap", desc: "Discuss implementation requirements, timelines, and next steps." },
 ];
-
-const timeSlots = ["09:30 AM", "11:00 AM", "01:30 PM", "03:00 PM", "04:30 PM"];
 
 export function Demo() {
   const lottieContainer = useRef<HTMLDivElement>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  
+  // Form State matching Section 26
   const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [isBooked, setIsBooked] = useState(false);
+  const [industry, setIndustry] = useState("");
+  const [employees, setEmployees] = useState("");
+  const [currentSoftware, setCurrentSoftware] = useState("");
+  const [goals, setGoals] = useState("");
+  
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     if (!lottieContainer.current) return;
@@ -48,292 +53,263 @@ export function Demo() {
     };
   }, []);
 
-  const handleBookingSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedDate || !selectedTime || !name || !email) return;
+    if (!name || !email || !phone) return;
 
-    setIsBooked(true);
+    setIsSubmitted(true);
 
     setTimeout(() => {
       setIsDialogOpen(false);
-      
-      // Delay resetting state to prevent visual glitch during dialog exit transition
       setTimeout(() => {
-        setIsBooked(false);
+        setIsSubmitted(false);
         setName("");
+        setCompany("");
+        setPhone("");
         setEmail("");
-        setSelectedTime(null);
-        setSelectedDate(new Date());
+        setIndustry("");
+        setEmployees("");
+        setCurrentSoftware("");
+        setGoals("");
       }, 300);
-
-      // Smooth scroll to next section
-      const currentSection = document.getElementById("demo");
-      const nextSection = currentSection?.nextElementSibling;
-      if (nextSection) {
-        nextSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }, 2500);
+    }, 3000);
   };
 
   return (
-    <section id="demo" className="relative py-32 px-6 overflow-hidden">
+    <section id="demo" className="relative py-28 px-6 overflow-hidden bg-background">
       <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
-      <div className="relative max-w-6xl mx-auto rounded-3xl border border-border bg-surface/80 backdrop-blur-xl p-10 md:p-16 shadow-[var(--shadow-elevated)]">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      
+      <div className="relative max-w-6xl mx-auto rounded-3xl border border-border/80 bg-surface/80 backdrop-blur-xl p-8 md:p-14 shadow-2xl">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           
-          {/* Left Column: Creative copywriting / Story resolution */}
+          {/* Left Column: Copy & Includes */}
           <div className="flex flex-col justify-center text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent bg-accent/10 px-3 py-1.5 rounded-full w-fit mb-6"
-            >
-              <BookOpen className="size-3.5" />
-              The Next Chapter
-            </motion.div>
+            <div className="text-xs uppercase tracking-[0.2em] text-accent font-extrabold mb-3">ERP DEMO WALKTHROUGH</div>
             
-            <motion.h2 
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight font-display"
-            >
-              From operational chaos <span className="text-gradient-accent">to absolute</span> <span className="italic font-serif font-medium text-gradient-primary">control.</span>
-            </motion.h2>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight font-display text-foreground">
+              Don't Just Read About ERP. <br />
+              <span className="text-gradient-accent">Experience It.</span>
+            </h2>
 
-            <motion.p 
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-6 text-muted-foreground text-sm md:text-base leading-relaxed max-w-xl font-medium"
-            >
-              Every empire starts with a single spreadsheet. But eventually, formulas break, communication gaps widen, and scale becomes impossible. We've read that chapter of chaos.
-            </motion.p>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.25 }}
-              className="mt-3 text-muted-foreground text-sm md:text-base leading-relaxed max-w-xl"
-            >
-              Pisoft is the reply. We build unified, real-time operating ecosystems that close the book on manual fire drills, so you can focus on writing your business's next great chapter.
-            </motion.p>
+            <p className="mt-4 text-muted-foreground text-sm md:text-base leading-relaxed">
+              Every business has different workflows. That's why we don't believe in a one-size-fits-all presentation. Book a personalized walkthrough and see how Pisoft ERP can fit your business.
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="mt-8"
-            >
-              <ul className="space-y-3">
-                {benefits.map((b, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm text-foreground/90">
-                    <span className="mt-0.5 size-5 shrink-0 rounded-full bg-[image:var(--gradient-primary)] grid place-items-center">
-                      <Check className="size-3 text-primary-foreground animate-pulse" />
-                    </span>
-                    <span>{b}</span>
-                  </li>
+            <div className="mt-8">
+              <h3 className="text-xs font-extrabold uppercase tracking-widest text-foreground mb-4 font-display">YOUR DEMO INCLUDES:</h3>
+              <div className="space-y-3.5">
+                {demoIncludes.map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <div className="size-5 rounded-full bg-accent/10 text-accent flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="size-3.5" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-bold text-foreground">{item.title}</div>
+                      <div className="text-xs text-muted-foreground">{item.desc}</div>
+                    </div>
+                  </div>
                 ))}
-              </ul>
-            </motion.div>
+              </div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-10"
-            >
+            <div className="mt-10">
               <Button
                 onClick={() => setIsDialogOpen(true)}
-                className="rounded-full bg-[image:var(--gradient-accent)] text-accent-foreground font-semibold px-8 py-6 text-base shadow-lg hover:shadow-accent/20 hover:opacity-95 transition-all cursor-pointer"
+                className="rounded-full bg-[image:var(--gradient-accent)] text-accent-foreground font-extrabold px-8 py-6 text-sm shadow-xl hover:opacity-95 transition-all cursor-pointer glow-accent"
               >
-                <CalendarIcon className="size-5 mr-2" />
-                Book Your Live Walkthrough
+                <span>Book Your Free ERP Demo</span>
+                <ArrowRight className="size-4 ml-2" />
               </Button>
-            </motion.div>
+            </div>
           </div>
 
-          {/* Right Column: Lottie book animation container */}
-          <div className="relative flex items-center justify-center min-h-[350px] md:min-h-[450px]">
-            {/* Ambient background glow behind lottie */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 via-transparent to-primary/20 blur-3xl rounded-full scale-75 animate-pulse pointer-events-none" />
+          {/* Right Column: Lottie Graphic */}
+          <div className="relative flex items-center justify-center min-h-[320px] md:min-h-[420px]">
+            <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 via-transparent to-primary/20 blur-3xl rounded-full pointer-events-none" />
             
-            {/* Glass container for Lottie book animation */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, type: "spring" }}
-              className="relative w-full max-w-[420px] aspect-square rounded-3xl border border-white/10 bg-surface/30 backdrop-blur-md p-6 flex items-center justify-center shadow-[var(--shadow-elevated)]"
-            >
+            <div className="relative w-full max-w-[420px] aspect-square rounded-3xl border border-border/80 bg-surface/50 backdrop-blur-md p-6 flex items-center justify-center shadow-xl">
               <div ref={lottieContainer} className="w-full h-full" />
-              <div className="absolute -bottom-4 right-6 bg-slate-950/80 backdrop-blur-md border border-white/10 px-4 py-2 rounded-xl text-[10px] text-white/80 font-bold uppercase tracking-wider select-none flex items-center gap-1.5 shadow-lg">
-                Rewrite Your Story
+              <div className="absolute -bottom-4 right-6 bg-slate-950/90 backdrop-blur-md border border-white/10 px-4 py-2 rounded-xl text-[10px] text-white font-extrabold uppercase tracking-wider select-none flex items-center gap-1.5 shadow-lg">
+                Personalized Walkthrough
               </div>
-            </motion.div>
+            </div>
           </div>
 
         </div>
       </div>
 
-      {/* Date & Time Selection Modal Dialog */}
+      {/* SECTION 26 — DEMO FORM DIALOG */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-[680px] bg-background/95 border border-border backdrop-blur-2xl p-6 md:p-8 rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden">
+        <DialogContent className="sm:max-w-[650px] max-h-[90vh] overflow-y-auto bg-background/95 border border-border backdrop-blur-2xl p-6 md:p-8 rounded-3xl shadow-2xl">
           <AnimatePresence mode="wait">
-            {!isBooked ? (
+            {!isSubmitted ? (
               <motion.div
-                key="booking-form"
+                key="demo-form"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
               >
                 <DialogHeader className="mb-6">
-                  <DialogTitle className="text-2xl md:text-3xl font-bold font-display">
-                    Schedule Your Walkthrough
+                  <DialogTitle className="text-2xl md:text-3xl font-extrabold font-display">
+                    Let's Talk About Your Business.
                   </DialogTitle>
-                  <DialogDescription className="text-muted-foreground text-sm">
-                    Choose a convenient date and time. We'll set up a personal meeting to walk you through Pisoft.
+                  <DialogDescription className="text-muted-foreground text-xs md:text-sm">
+                    Tell us a little about your business and we'll show you how Pisoft ERP can fit your requirements.
                   </DialogDescription>
                 </DialogHeader>
 
-                <form onSubmit={handleBookingSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-12 gap-6 items-start">
+                <form onSubmit={handleFormSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     
-                    {/* Left Grid: Calendar Picker */}
-                    <div className="md:col-span-7 border border-border bg-surface/50 rounded-2xl p-2 flex justify-center">
-                      <Calendar
-                        mode="single"
-                        selected={selectedDate}
-                        onSelect={setSelectedDate}
-                        disabled={(date) => date < new Date(new Date().setHours(0, 0, 0, 0))}
-                        className="rounded-xl border-0"
-                      />
+                    {/* Name */}
+                    <div>
+                      <label className="text-xs font-bold text-foreground mb-1 block">Name *</label>
+                      <div className="relative">
+                        <User className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                        <Input
+                          placeholder="Your Full Name"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          required
+                          className="pl-9 h-10 border-border bg-surface/50 rounded-xl text-xs"
+                        />
+                      </div>
                     </div>
 
-                    {/* Right Grid: Form Details & Time Slots */}
-                    <div className="md:col-span-5 space-y-4">
-                      <div className="space-y-3">
-                        <label className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">
-                          Contact Info
-                        </label>
-                        <div className="relative">
-                          <User className="absolute left-3 top-2.5 h-4.5 w-4.5 text-muted-foreground/60" />
-                          <Input
-                            placeholder="Your Name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                            className="pl-10 h-10 border-border bg-surface/40 rounded-xl focus-visible:ring-accent"
-                          />
-                        </div>
-                        <div className="relative">
-                          <Mail className="absolute left-3 top-2.5 h-4.5 w-4.5 text-muted-foreground/60" />
-                          <Input
-                            type="email"
-                            placeholder="work@company.com"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            className="pl-10 h-10 border-border bg-surface/40 rounded-xl focus-visible:ring-accent"
-                          />
-                        </div>
+                    {/* Company Name */}
+                    <div>
+                      <label className="text-xs font-bold text-foreground mb-1 block">Company Name</label>
+                      <div className="relative">
+                        <Building className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                        <Input
+                          placeholder="Your Company Name"
+                          value={company}
+                          onChange={(e) => setCompany(e.target.value)}
+                          className="pl-9 h-10 border-border bg-surface/50 rounded-xl text-xs"
+                        />
                       </div>
+                    </div>
 
-                      <div className="space-y-2.5">
-                        <label className="text-xs font-semibold tracking-wider text-muted-foreground uppercase flex items-center gap-1.5">
-                          <Clock className="size-3.5" />
-                          Select Time
-                        </label>
-                        <div className="grid grid-cols-2 gap-2 max-h-[150px] overflow-y-auto pr-1">
-                          {timeSlots.map((slot) => (
-                            <button
-                              key={slot}
-                              type="button"
-                              onClick={() => setSelectedTime(slot)}
-                              className={`py-2 px-1 text-xs font-medium rounded-xl border text-center transition-all cursor-pointer
-                                ${selectedTime === slot 
-                                  ? "bg-accent border-accent text-accent-foreground shadow-md shadow-accent/15" 
-                                  : "border-border hover:border-accent/40 bg-surface/30 hover:bg-surface/60 text-foreground"}`}
-                            >
-                              {slot}
-                            </button>
-                          ))}
-                        </div>
+                    {/* Phone Number */}
+                    <div>
+                      <label className="text-xs font-bold text-foreground mb-1 block">Phone Number *</label>
+                      <div className="relative">
+                        <Phone className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                        <Input
+                          placeholder="+91 98765 43210"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          required
+                          className="pl-9 h-10 border-border bg-surface/50 rounded-xl text-xs"
+                        />
                       </div>
+                    </div>
+
+                    {/* Email Address */}
+                    <div>
+                      <label className="text-xs font-bold text-foreground mb-1 block">Email Address *</label>
+                      <div className="relative">
+                        <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                        <Input
+                          type="email"
+                          placeholder="name@company.com"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          required
+                          className="pl-9 h-10 border-border bg-surface/50 rounded-xl text-xs"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Industry */}
+                    <div>
+                      <label className="text-xs font-bold text-foreground mb-1 block">Industry</label>
+                      <div className="relative">
+                        <Layers className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                        <Input
+                          placeholder="e.g. Manufacturing, Retail"
+                          value={industry}
+                          onChange={(e) => setIndustry(e.target.value)}
+                          className="pl-9 h-10 border-border bg-surface/50 rounded-xl text-xs"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Number of Employees */}
+                    <div>
+                      <label className="text-xs font-bold text-foreground mb-1 block">Number of Employees</label>
+                      <div className="relative">
+                        <Users className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                        <Input
+                          placeholder="e.g. 10–50, 50–200"
+                          value={employees}
+                          onChange={(e) => setEmployees(e.target.value)}
+                          className="pl-9 h-10 border-border bg-surface/50 rounded-xl text-xs"
+                        />
+                      </div>
+                    </div>
+
+                  </div>
+
+                  {/* Current Software */}
+                  <div>
+                    <label className="text-xs font-bold text-foreground mb-1 block">Current Software / ERP</label>
+                    <Input
+                      placeholder="e.g. Tally, Excel, Custom Tool, None"
+                      value={currentSoftware}
+                      onChange={(e) => setCurrentSoftware(e.target.value)}
+                      className="h-10 border-border bg-surface/50 rounded-xl text-xs"
+                    />
+                  </div>
+
+                  {/* Improvement Goals */}
+                  <div>
+                    <label className="text-xs font-bold text-foreground mb-1 block">What would you like to improve?</label>
+                    <div className="relative">
+                      <MessageSquare className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                      <Input
+                        placeholder="e.g. Inventory accuracy, sales tracking, payroll automation..."
+                        value={goals}
+                        onChange={(e) => setGoals(e.target.value)}
+                        className="pl-9 h-10 border-border bg-surface/50 rounded-xl text-xs"
+                      />
                     </div>
                   </div>
 
-                  <div className="flex justify-end gap-3 pt-4 border-t border-border/80">
-                    <button
-                      type="button"
-                      onClick={() => setIsDialogOpen(false)}
-                      className="px-5 py-2.5 rounded-full border border-border text-sm font-semibold hover:bg-surface/60 transition cursor-pointer"
-                    >
-                      Cancel
-                    </button>
+                  <div className="pt-3 flex flex-col gap-2">
                     <Button
                       type="submit"
-                      disabled={!selectedDate || !selectedTime || !name || !email}
-                      className="rounded-full bg-[image:var(--gradient-accent)] text-accent-foreground font-semibold px-6 py-2.5 text-sm shadow-md hover:opacity-95 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                      disabled={!name || !email || !phone}
+                      className="w-full rounded-full bg-[image:var(--gradient-accent)] text-accent-foreground font-extrabold py-3 text-sm shadow-md hover:opacity-95 transition cursor-pointer"
                     >
-                      Confirm Walkthrough
+                      Request My Demo
                     </Button>
+                    <p className="text-[11px] text-center text-muted-foreground font-medium">
+                      No commitment. Just a conversation about your requirements.
+                    </p>
                   </div>
                 </form>
               </motion.div>
             ) : (
               <motion.div
-                key="booking-success"
+                key="demo-success"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
-                className="flex flex-col items-center text-center py-12 px-4"
+                className="flex flex-col items-center text-center py-10 px-4"
               >
-                <div className="size-20 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-500 mb-6 shadow-[0_0_30px_rgba(16,185,129,0.15)] animate-bounce">
-                  <Check className="size-10 stroke-[2.5]" />
+                <div className="size-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-500 mb-4 shadow-lg">
+                  <Check className="size-8 stroke-[3]" />
                 </div>
                 
-                <h3 className="text-3xl font-bold font-display text-foreground">
-                  You're Booked!
+                <h3 className="text-2xl font-bold font-display text-foreground">
+                  Demo Request Received!
                 </h3>
-                <p className="mt-3 text-muted-foreground text-sm max-w-sm">
-                  We've reserved a personalized session just for you. A calendar invitation and video link have been sent to <span className="font-semibold text-foreground">{email}</span>.
+                <p className="mt-2 text-muted-foreground text-xs max-w-sm">
+                  Thank you, <span className="font-bold text-foreground">{name}</span>. Our ERP specialist will reach out to you shortly at <span className="font-bold text-foreground">{phone}</span> to schedule your walkthrough.
                 </p>
-
-                <div className="mt-8 bg-surface/50 border border-border rounded-2xl p-4 w-full max-w-md flex flex-col items-center gap-2 shadow-sm">
-                  <div className="text-xs uppercase tracking-[0.1em] text-accent font-semibold">Appointment Details</div>
-                  <div className="font-semibold text-lg flex items-center gap-2">
-                    <CalendarIcon className="size-4.5 text-muted-foreground" />
-                    {selectedDate?.toLocaleDateString("en-US", { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
-                  </div>
-                  <div className="text-sm font-medium text-foreground/85 flex items-center gap-1.5">
-                    <Clock className="size-4 text-muted-foreground" />
-                    {selectedTime} · 30 mins
-                  </div>
-                </div>
-
-                <div className="mt-12 flex flex-col items-center gap-3">
-                  <div className="w-16 h-1 bg-surface rounded-full overflow-hidden relative">
-                    <motion.div 
-                      initial={{ left: "-100%" }}
-                      animate={{ left: "0%" }}
-                      transition={{ duration: 2.2, ease: "linear" }}
-                      className="absolute top-0 bottom-0 w-full bg-accent"
-                    />
-                  </div>
-                  <span className="text-xs text-muted-foreground/80 font-medium animate-pulse">
-                    Transitioning to client reviews...
-                  </span>
-                </div>
               </motion.div>
             )}
           </AnimatePresence>

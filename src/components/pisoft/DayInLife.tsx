@@ -5,11 +5,11 @@ import dayInLifeVideo from "@/assets/i4.mp4";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const moments = [
-  { Icon: Sunrise, time: "Morning", title: "Autopilot Morning", body: "Open the dashboard. Sales performance is already there.", tone: "from-accent/40 to-transparent" },
-  { Icon: Sun, time: "Midday", title: "Automated Workflows", body: "Approve leave. Stock alerts trigger. Purchase orders auto-update.", tone: "from-primary/40 to-transparent" },
-  { Icon: CloudSun, time: "Afternoon", title: "Real-time Collaboration", body: "Sales team logs customer status. Targets stay visible to everyone.", tone: "from-accent/30 to-transparent" },
-  { Icon: Moon, time: "Evening", title: "Peace of Mind", body: "Financial reports generate themselves. You close the laptop on time.", tone: "from-primary/30 to-transparent" },
-  { Icon: Zap, time: "Autopilot", title: "Business on Autopilot", body: "Running your business is as simple as scrolling. Pisoft ERP handles the rest.", tone: "from-accent/50 to-transparent" },
+  { Icon: Sunrise, time: "08:00 AM", title: "Start With Clarity.", body: "Open the dashboard. Sales performance is already there.", tone: "from-accent/40 to-transparent" },
+  { Icon: Sun, time: "11:00 AM", title: "Workflows Keep Moving.", body: "Approve leave. Stock alerts trigger. Purchase workflows move forward.", tone: "from-primary/40 to-transparent" },
+  { Icon: CloudSun, time: "02:00 PM", title: "Teams Stay Connected.", body: "Sales updates customer activity. Managers see targets. Departments work from the same information.", tone: "from-accent/30 to-transparent" },
+  { Icon: Moon, time: "06:00 PM", title: "End With Confidence.", body: "Reports are generated. Information is organized. The team closes the day with clarity.", tone: "from-primary/30 to-transparent" },
+  { Icon: Zap, time: "Autopilot", title: "Business Management Shouldn't Feel Like Firefighting.", body: "Pisoft ERP helps your business run with greater visibility, structure, and control.", tone: "from-accent/50 to-transparent" },
 ];
 
 export function DayInLife() {
@@ -135,12 +135,12 @@ export function DayInLife() {
             <div className="relative h-[35vh] md:h-[50vh] lg:h-[55vh] w-full flex items-center justify-center overflow-hidden">
               
               {/* Vertical timeline line */}
-              <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-border to-transparent" />
+              <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-border to-transparent" />
 
               {/* Sliding Inner List */}
               <motion.div 
                 style={{ y: timelineY }} 
-                className="absolute inset-0 pl-12 py-4 flex flex-col gap-16 md:gap-20 pt-8 pb-32"
+                className="absolute inset-0 pl-14 py-4 flex flex-col gap-16 md:gap-20 pt-8 pb-32"
               >
                 {moments.map((m, i) => {
                   const isActive = activeIndex === i;
@@ -152,7 +152,7 @@ export function DayInLife() {
                       }`}
                     >
                       {/* Glow dot node */}
-                      <div className={`absolute -left-[43px] top-1.5 size-4 rounded-full bg-background border-2 flex items-center justify-center transition-all duration-300 ${
+                      <div className={`absolute -left-[44px] top-1.5 size-4 rounded-full bg-background border-2 flex items-center justify-center transition-all duration-300 ${
                         isActive ? "border-accent shadow-[0_0_12px_rgba(234,88,12,0.8)] scale-110" : "border-border"
                       }`}>
                         <div className={`size-1.5 rounded-full transition-all duration-300 ${

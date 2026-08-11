@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Phone, Menu, X } from "lucide-react";
 import { Link, useLocation } from "@tanstack/react-router";
+import logoErp from "@/assets/logoerp.png";
 
 const marqueeItems = [
   "ERP Solution Providers by CIOReview India Magazine — Nov 2017",
@@ -20,9 +21,11 @@ const navItems = [
 ];
 
 export function Nav() {
+  const [isVisible, setIsVisible] = useState(true);
   const [showMarquee, setShowMarquee] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     if (isOpen) {
@@ -37,13 +40,27 @@ export function Nav() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      const currentScrollY = window.scrollY;
+
+      // Hide top marquee strip when scrolled past 50px
+      if (currentScrollY > 50) {
         setShowMarquee(false);
       } else {
         setShowMarquee(true);
       }
+
+      // Hide Navbar when scrolling down, show when scrolling up
+      if (currentScrollY <= 50) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY.current + 5) {
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY.current - 5) {
+        setIsVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
     };
-    
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll(); // Check initial scroll state
 
@@ -55,7 +72,7 @@ export function Nav() {
   useEffect(() => {
     const updateHeight = () => {
       if (headerRef.current) {
-        const height = headerRef.current.offsetHeight;
+        const height = isVisible || isOpen ? headerRef.current.offsetHeight : 0;
         document.documentElement.style.setProperty("--navbar-height", `${height}px`);
       }
     };
@@ -70,25 +87,27 @@ export function Nav() {
     return () => {
       resizeObserver.disconnect();
     };
-  }, [showMarquee]);
+  }, [showMarquee, isVisible, isOpen]);
 
   const location = useLocation();
   const currentPath = location.pathname;
 
   const navItems = [
     { label: "HOME", to: "/", active: currentPath === "/" && !location.hash },
+    { label: "ERP", to: "/#erp", active: location.hash === "#erp" },
     { label: "INDUSTRIES", to: "/industries", active: currentPath === "/industries" },
-    { label: "APPLICATIONS", to: "/applications", active: currentPath === "/applications" },
-    { label: "NEWS", to: "/news", active: currentPath === "/news" },
+    { label: "SOLUTIONS", to: "/applications", active: currentPath === "/applications" },
+    { label: "SERVICES", to: "/#services", active: location.hash === "#services" },
+    { label: "ABOUT", to: "/news", active: currentPath === "/news" },
     { label: "CONTACT", to: "/contact", active: currentPath === "/contact" },
   ];
 
   return (
     <motion.header
       ref={headerRef}
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6 }}
+      initial={{ y: 0 }}
+      animate={{ y: isVisible || isOpen ? "0%" : "-100%" }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
       className="fixed top-0 inset-x-0 z-50"
     >
       {/* Top marquee strip */}
@@ -102,10 +121,10 @@ export function Nav() {
         className="overflow-hidden flex items-stretch text-xs font-medium"
       >
         <Link
-          to="/news"
-          className="hidden md:flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2 whitespace-nowrap"
+          to="/demo"
+          className="hidden md:flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2 whitespace-nowrap font-bold tracking-wide"
         >
-          Read CIOReview E-Magazine
+          ERP DEMO AVAILABLE — BOOK TODAY
         </Link>
         <div className="flex-1 relative overflow-hidden bg-foreground text-background">
           <div className="absolute inset-0 flex items-center">
@@ -128,44 +147,41 @@ export function Nav() {
           </div>
         </div>
         <Link
-          to="/contact"
+          to="/demo"
           className="hidden md:flex items-center bg-accent text-accent-foreground px-5 py-2 font-semibold tracking-wide whitespace-nowrap hover:opacity-95 transition"
         >
-          CLICK TO KNOW MORE
+          BOOK FREE DEMO
         </Link>
       </motion.div>
 
       {/* Middle band: logo + mobile hamburger + contact */}
       <div className="bg-background border-b border-border">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between gap-6">
+        <div className="max-w-7xl mx-auto px-6 h-16 md:h-18 flex items-center justify-between gap-6 py-1">
           <Link to="/" className="flex items-center gap-2.5">
-            <div className="relative size-9 rounded-lg bg-[image:var(--gradient-primary)] grid place-items-center shadow-[var(--shadow-glow-primary)]">
-              <span className="text-sm font-bold text-primary-foreground font-display">P</span>
-              <span className="absolute -right-1 -bottom-1 size-2.5 rounded-full bg-accent ring-2 ring-background" />
-            </div>
-            <span className="font-display text-2xl tracking-tight">
-              <span className="text-primary font-bold">pisoft</span>
-              <span className="text-accent font-bold">ERP</span>
-            </span>
+            <img
+              src={logoErp}
+              alt="Pisoft ERP"
+              className="h-14 md:h-18 lg:h-20 w-auto object-contain rounded-md transition-transform hover:scale-105"
+            />
           </Link>
 
           <div className="hidden lg:flex items-center gap-10">
             <div className="flex items-center gap-3">
-              <div className="size-10 grid place-items-center rounded-full bg-primary/10 text-primary">
-                <MapPin className="size-5" />
+              <div className="size-9 grid place-items-center rounded-full bg-primary/10 text-primary">
+                <MapPin className="size-4.5" />
               </div>
               <div className="leading-tight">
-                <div className="text-[11px] tracking-[0.2em] text-muted-foreground font-semibold">FIND US</div>
-                <div className="text-sm font-semibold text-foreground">Phase 8-B, Mohali</div>
+                <div className="text-[10px] tracking-[0.2em] text-muted-foreground font-semibold">FIND US</div>
+                <div className="text-xs font-semibold text-foreground">Phase 8-B, Mohali</div>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <div className="size-10 grid place-items-center rounded-full bg-accent/10 text-accent">
-                <Phone className="size-5" />
+              <div className="size-9 grid place-items-center rounded-full bg-accent/10 text-accent">
+                <Phone className="size-4.5" />
               </div>
               <div className="leading-tight">
-                <div className="text-[11px] tracking-[0.2em] text-muted-foreground font-semibold">CALL US TODAY</div>
-                <a href="tel:+918288029930" className="text-sm font-semibold text-foreground hover:text-primary transition">
+                <div className="text-[10px] tracking-[0.2em] text-muted-foreground font-semibold">CALL US TODAY</div>
+                <a href="tel:+918288029930" className="text-xs font-semibold text-foreground hover:text-primary transition">
                   +91-8288029930
                 </a>
               </div>
@@ -184,18 +200,18 @@ export function Nav() {
       </div>
 
       {/* Bottom nav strip with angled CTA — desktop only */}
-      <div className="hidden lg:block relative bg-primary text-primary-foreground">
+      <div className="hidden lg:block relative bg-primary text-white">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 flex items-stretch justify-between">
-          <nav className="flex items-stretch text-sm font-semibold tracking-wide">
+          <nav className="flex items-stretch text-xs font-bold tracking-wide">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 to={item.to}
                 hash={item.hash}
-                className={`relative px-5 py-4 flex items-center transition-colors ${
+                className={`relative px-5 py-2.5 flex items-center transition-colors ${
                   item.active
-                    ? "bg-accent text-accent-foreground"
-                    : "hover:bg-white/10"
+                    ? "bg-accent text-accent-foreground font-extrabold"
+                    : "text-white/90 hover:text-white hover:bg-white/10"
                 }`}
                 style={
                   item.active
@@ -241,13 +257,11 @@ export function Nav() {
                 {/* Drawer Header */}
                 <div className="flex items-center justify-between pb-6 border-b border-border">
                   <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
-                    <div className="relative size-8 rounded-lg bg-[image:var(--gradient-primary)] grid place-items-center">
-                      <span className="text-xs font-bold text-primary-foreground font-display">P</span>
-                    </div>
-                    <span className="font-display text-xl tracking-tight">
-                      <span className="text-primary font-bold">pisoft</span>
-                      <span className="text-accent font-bold">ERP</span>
-                    </span>
+                    <img
+                      src={logoErp}
+                      alt="Pisoft ERP"
+                      className="h-11 w-auto object-contain rounded-md"
+                    />
                   </Link>
                   <button
                     onClick={() => setIsOpen(false)}

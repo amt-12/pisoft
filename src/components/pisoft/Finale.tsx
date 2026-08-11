@@ -2,84 +2,103 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { ArrowRight, MessageSquare } from "lucide-react";
 
-const modules = ["Sales", "HR", "Inventory", "Payroll", "CRM", "Accounts"];
+const erpModules = [
+  "Sales", "CRM", "Inventory", "Purchase", "HR",
+  "Payroll", "Finance", "Projects", "Production", "Analytics"
+];
 
 export function Finale() {
   const ref = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const orbScale = useTransform(scrollYProgress, [0.3, 0.8], [0.5, 1.3]);
-  const r = isMobile ? 95 : 140;
+  const orbScale = useTransform(scrollYProgress, [0.2, 0.7], [0.5, 1.2]);
+  const r = isMobile ? 110 : 170;
 
   return (
-    <section ref={ref} className="relative py-32 px-6 overflow-hidden bg-secondary">
-      <div className="absolute inset-0 bg-grid opacity-30" />
+    <section ref={ref} className="relative py-32 px-6 overflow-hidden bg-slate-950 text-white border-t border-slate-900">
+      <div className="absolute inset-0 bg-grid opacity-15 pointer-events-none" />
 
       <div className="relative max-w-5xl mx-auto text-center">
-        <div className="relative h-72 sm:h-80 grid place-items-center mb-12">
+        
+        {/* Module Orbit & Central Convergence */}
+        <div className="relative h-80 sm:h-96 grid place-items-center mb-12">
           <motion.div
             style={{ scale: orbScale }}
-            className="absolute size-48 sm:size-64 rounded-full bg-[image:var(--gradient-primary)] blur-3xl opacity-60"
+            className="absolute size-64 sm:size-80 rounded-full bg-[image:var(--gradient-accent)] blur-3xl opacity-40 pointer-events-none"
           />
-          {modules.map((m, i) => {
-            const angle = (i / modules.length) * Math.PI * 2 - Math.PI / 2;
+
+          {erpModules.map((m, i) => {
+            const angle = (i / erpModules.length) * Math.PI * 2 - Math.PI / 2;
             const x = Math.cos(angle) * r;
             const y = Math.sin(angle) * r;
             return (
               <motion.div
                 key={m}
-                initial={{ opacity: 0, x: x * 2, y: y * 2 }}
+                initial={{ opacity: 0, x: x * 1.8, y: y * 1.8 }}
                 whileInView={{ opacity: 1, x, y }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.8 }}
-                className="absolute rounded-full border border-border bg-surface/80 backdrop-blur px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs"
+                transition={{ delay: i * 0.06, duration: 0.6 }}
+                className="absolute rounded-full border border-slate-700 bg-slate-900/90 backdrop-blur px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs font-bold text-slate-200 shadow-lg"
               >
                 {m}
               </motion.div>
             );
           })}
+
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.8 }}
-            className="relative size-20 sm:size-24 rounded-full bg-[image:var(--gradient-primary)] glow-primary grid place-items-center"
+            transition={{ delay: 0.7 }}
+            className="relative size-24 sm:size-28 rounded-full bg-[image:var(--gradient-accent)] glow-accent grid place-items-center shadow-2xl"
           >
-            <span className="font-display font-bold text-xs sm:text-sm">Pisoft</span>
+            <span className="font-display font-extrabold text-sm sm:text-base text-accent-foreground">Pisoft ERP</span>
           </motion.div>
         </div>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-5xl md:text-7xl font-bold tracking-tight"
-        >
-          One Platform.<br />One Team.<br />
-          <span className="text-gradient-accent">One Source of Truth.</span>
-        </motion.h2>
-        <p className="mt-6 text-muted-foreground max-w-xl mx-auto">
-          Empowering businesses through intelligent technology.
-        </p>
+        {/* Headline & Copy */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-10"
+        >
+          <div className="text-xs uppercase tracking-[0.2em] text-accent font-extrabold mb-3">CONVERGENCE</div>
+          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight font-display text-white max-w-4xl mx-auto leading-tight">
+            Your Next Chapter <br />
+            <span className="text-gradient-accent">Starts With Better Systems.</span>
+          </h2>
+
+          <p className="mt-6 text-slate-300 max-w-2xl mx-auto text-sm md:text-base leading-relaxed font-sans">
+            Your business has already done the hard part — it grew. Now give it the systems it needs to grow further. Whether you're looking to streamline your operations with Pisoft ERP or build something completely custom, our team is ready to help.
+          </p>
+        </motion.div>
+
+        {/* CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
           <Link
             to="/demo"
-            className="inline-flex items-center rounded-full bg-[image:var(--gradient-accent)] px-8 py-4 text-base font-semibold text-accent-foreground glow-accent hover:opacity-95 transition"
+            className="inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-accent)] px-8 py-4 text-sm font-extrabold text-accent-foreground glow-accent hover:opacity-95 transition-all shadow-xl"
           >
-            Book Your Demo Today
+            <span>Book Your Free ERP Demo</span>
+            <ArrowRight className="size-4" />
+          </Link>
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/80 hover:bg-slate-800 px-8 py-4 text-sm font-bold text-white transition-all"
+          >
+            <MessageSquare className="size-4 text-accent" />
+            <span>Talk to Our Team</span>
           </Link>
         </motion.div>
-      </div>
 
-      <footer className="relative mt-32 pt-10 border-t border-border text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} Pisoft. Crafted for the businesses building what comes next.
-      </footer>
+      </div>
     </section>
   );
 }

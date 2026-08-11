@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import logoErp from "@/assets/logoerp.png";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Nav } from "@/components/pisoft/Nav";
 import { Footer } from "@/components/pisoft/Footer";
@@ -90,6 +91,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      {
+        rel: "icon",
+        type: "image/png",
+        href: logoErp,
+      },
+      {
+        rel: "shortcut icon",
+        type: "image/png",
+        href: logoErp,
+      },
+      {
+        rel: "apple-touch-icon",
+        href: logoErp,
+      },
       {
         rel: "stylesheet",
         href: appCss,

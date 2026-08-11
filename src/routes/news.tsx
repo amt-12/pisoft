@@ -272,7 +272,7 @@ function NewsPage() {
         <div className="grid lg:grid-cols-[300px_1fr] gap-12 items-start">
           
           {/* Left Sidebar (Company/News Tabs) */}
-          <div className="flex flex-col gap-3 bg-surface/40 border border-border/60 p-4 rounded-2xl backdrop-blur-md sticky top-36">
+          <div className="flex flex-col gap-3 bg-surface/40 border border-border/60 p-4 rounded-2xl backdrop-blur-md sticky top-[calc(var(--navbar-height)+1.5rem)]">
             <h2 className="text-[11px] font-bold tracking-[0.2em] text-muted-foreground px-3 mb-2 uppercase">
               SECTIONS
             </h2>

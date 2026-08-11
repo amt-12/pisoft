@@ -138,3 +138,7 @@
 }
 .animate-marquee { animation: marquee 40s linear infinite; }
 
+.sticky {
+  transition: top 0.3s ease, height 0.3s ease;
+}
+

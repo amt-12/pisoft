@@ -3,243 +3,257 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   BarChart3,
-  School,
-  Plane,
-  Car,
-  HeartPulse,
+  ShoppingCart,
+  Users,
+  Box,
+  Layers,
   Building2,
+  FileText,
+  Cpu,
+  Briefcase,
+  PieChart,
   CheckCircle2,
   ArrowRight,
-  TrendingUp,
+  ShieldCheck,
   Zap,
+  Check
 } from "lucide-react";
 import { Finale } from "@/components/pisoft/Finale";
 
 export const Route = createFileRoute("/applications")({
   head: () => ({
     meta: [
-      { title: "Pisoft ERP — Specialized Applications & System Suites" },
+      { title: "Pisoft ERP Applications — Everything Your Business Needs Connected" },
       {
         name: "description",
-        content: "Explore Pisoft's suite of management ERP systems: FSME, ESME, TTSME, ASME, MHSME, and SPSME, engineered to optimize financial services, schools, travel, automotive, clinics, and services.",
+        content: "Explore Pisoft ERP's integrated application ecosystem: Sales, CRM, Inventory, Purchase, Finance, HR, Payroll, Production, Projects, and Real-Time Analytics.",
       },
     ],
   }),
   component: ApplicationsPage,
 });
 
-// Applications system data matching the tabs
 const applicationsData = [
   {
-    id: "fsme",
-    name: "FSME",
-    displayName: "Financial Services Management ERP (FSME)",
+    id: "sales",
+    name: "SALES MANAGEMENT",
+    displayName: "Connected Sales Management",
+    icon: ShoppingCart,
+    description: "Manage enquiries, quotations, orders, sales activities, targets, and performance from one centralized system.",
+    highlight: "Sales shouldn't be a collection of spreadsheets. It should be a connected process.",
+    cta: "Explore Sales →",
+    modules: [
+      { title: "Enquiry & Quote Manager", desc: "Convert incoming enquiries into branded quotations with multi-item pricing tiers." },
+      { title: "Order Pipeline Sync", desc: "Seamless transfer from confirmed sales order directly into inventory & billing." },
+      { title: "Target & Performance Logs", desc: "Track sales rep activity, monthly revenue targets, and commission structures." },
+      { title: "Automated Follow-ups", desc: "Trigger automatic email and SMS reminders for pending client proposals." },
+    ],
+    metrics: [
+      { label: "Order Conversion", value: "+35% Faster" },
+      { label: "Quote Accuracy", value: "99.9%" },
+      { label: "Pipeline Control", value: "100% Real-time" },
+    ],
+  },
+  {
+    id: "crm",
+    name: "CRM",
+    displayName: "Customer Relationship Management",
+    icon: Users,
+    description: "Track leads, customers, follow-ups, communication, opportunities, and relationships throughout the customer journey.",
+    highlight: "Know your customers. Understand your pipeline. Never lose an opportunity.",
+    cta: "Explore CRM →",
+    modules: [
+      { title: "Lead Lifecycle Tracking", desc: "Capture leads from web forms, WhatsApp, and calls into one structured pipeline." },
+      { title: "360° Customer Profile", desc: "Complete view of communication history, past purchases, open tickets, and contracts." },
+      { title: "Opportunity Forecasting", desc: "Predict monthly revenue based on weighted deal stages and win probabilities." },
+      { title: "Activity Reminders", desc: "Automated task assignments and reminders for sales representatives." },
+    ],
+    metrics: [
+      { label: "Lead Retention", value: "4x Higher" },
+      { label: "Response Time", value: "< 15 Mins" },
+      { label: "Deal Closure", value: "+28% Boost" },
+    ],
+  },
+  {
+    id: "inventory",
+    name: "INVENTORY MANAGEMENT",
+    displayName: "Inventory & Stock Control",
+    icon: Layers,
+    description: "Monitor stock levels, movements, availability, transfers, adjustments, and inventory performance.",
+    highlight: "Know what you have, where it is, and what needs attention.",
+    cta: "Explore Inventory →",
+    modules: [
+      { title: "Multi-Warehouse Tracking", desc: "Real-time visibility across central warehouses, regional depots, and transit stock." },
+      { title: "Barcode & Batch Serial Numbers", desc: "Track batch expiration dates, lot numbers, and serials with barcode scanning." },
+      { title: "Low-Stock Reorder Triggers", desc: "Automatic purchase requisition alerts when items hit min reorder levels." },
+      { title: "Stock Valuation Reports", desc: "FIFO, LIFO, and weighted average stock valuation calculated automatically." },
+    ],
+    metrics: [
+      { label: "Stock Accuracy", value: "99.8%" },
+      { label: "Wastage Reduction", value: "-45% Lower" },
+      { label: "Reorder Speed", value: "Instant Sync" },
+    ],
+  },
+  {
+    id: "purchase",
+    name: "PURCHASE MANAGEMENT",
+    displayName: "Procurement & Supplier Control",
+    icon: Box,
+    description: "Manage suppliers, purchase requests, purchase orders, procurement workflows, and purchasing information.",
+    highlight: "Bring procurement into the same connected business system.",
+    cta: "Explore Purchase →",
+    modules: [
+      { title: "Supplier Quotations (RFQ)", desc: "Send RFQs to multiple vendors and compare quotes side by side." },
+      { title: "Purchase Requisition Approval", desc: "Multi-level approval workflows based on order value thresholds." },
+      { title: "Goods Received Notes (GRN)", desc: "Match incoming physical shipments against purchase orders and vendor bills." },
+      { title: "Vendor Rating Scorecards", desc: "Track supplier delivery speeds, product quality, and price compliance." },
+    ],
+    metrics: [
+      { label: "Procurement Cycle", value: "-40% Time" },
+      { label: "Vendor Compliance", value: "98.5%" },
+      { label: "PO Match Rate", value: "100% Exact" },
+    ],
+  },
+  {
+    id: "finance",
+    name: "ACCOUNTS & FINANCE",
+    displayName: "Financial Operations & Ledger",
     icon: BarChart3,
-    description:
-      "Pisoft's Financial Services Management ERP (FSME) is built to coordinate high-velocity transactions, financial audits, client portfolio risk management, and automatic compliance logging for scaling financial brokerages and payment institutions.",
+    description: "Bring financial operations into the same ecosystem with structured financial information, transactions, and reporting.",
+    highlight: "Turn financial data into business visibility.",
+    cta: "Explore Finance →",
     modules: [
-      { title: "Portfolio Tracking", desc: "Consolidate client asset balances, margin profiles, and trade ledgers instantly." },
-      { title: "Compliance Engine", desc: "Automated tax calculations, KYC verification stages, and AML detection rules." },
-      { title: "Transaction Hub", desc: "Secure processing of wire transfers, instant card checkouts, and batch payments." },
-      { title: "Auditor Console", desc: "Generate audit-ready ledger journals and multi-entity taxation logs automatically." },
+      { title: "General Ledger & Chart of Accounts", desc: "Multi-currency general ledger with configurable account trees." },
+      { title: "Accounts Receivable & Payable", desc: "Track outstanding client bills and vendor payables with aging alerts." },
+      { title: "Bank Reconciliation", desc: "Import electronic bank statements for 1-click ledger reconciliation." },
+      { title: "Automated Tax & P&L Reports", desc: "Compile balance sheets, profit/loss, and GST/VAT tax filings instantly." },
     ],
     metrics: [
-      { label: "Accounts Settled", value: "99.98%" },
-      { label: "Ledger Sync", value: "1.2s Sync" },
-      { label: "API Transactions", value: "12M+ / mo" },
+      { label: "Audit Readiness", value: "Instant" },
+      { label: "Tax Compliance", value: "100% Automated" },
+      { label: "Cashflow Control", value: "Real-time" },
     ],
-    dashboardMock: {
-      title: "FSME Analytics Console",
-      stats: [
-        { label: "Active Portfolios", val: "1,240 Admin", color: "text-blue-600" },
-        { label: "Settlement Status", val: "100% Cleared", color: "text-emerald-600" },
-      ],
-      listTitle: "Recent Financial Transacts",
-      list: [
-        { desc: "Apex Capital (Batch Trade)", right: "$42,500.00", status: "Cleared", badgeColor: "bg-emerald-100 text-emerald-800" },
-        { desc: "Vertex Inv (Margin Call)", right: "$5,400.00", status: "Resolved", badgeColor: "bg-emerald-100 text-emerald-800" },
-        { desc: "Nova Holdings (Wire Transfer)", right: "$12,300.00", status: "Pending", badgeColor: "bg-amber-100 text-amber-800" },
-      ],
-      chartValues: [40, 50, 48, 70, 65, 80, 92],
-    },
   },
   {
-    id: "esme",
-    name: "ESME",
-    displayName: "Education System Management ERP (ESME)",
-    icon: School,
-    description:
-      "Pisoft's Education System Management ERP (ESME) consolidates academic databases, scheduling algorithms, online fee invoicing, student progress reports, and teacher workloads into a unified digital workspace.",
-    modules: [
-      { title: "Enrollment Hub", desc: "Manage applicant registration, class seat allocation, and document validation stages." },
-      { title: "Fee Collections", desc: "Auto-generate recurring term invoices, exam fees, and bus transit billings." },
-      { title: "Intelligent Timetables", desc: "Dynamic classroom scheduling engines designed to eliminate schedule conflicts." },
-      { title: "Student Portals", desc: "Online portals for assignments, progress grading, class attendance tracking, and announcements." },
-    ],
-    metrics: [
-      { label: "Active Pupils", value: "14,230" },
-      { label: "Invoicing Accuracy", value: "100%" },
-      { label: "Attendance Logging", value: "99.8%" },
-    ],
-    dashboardMock: {
-      title: "ESME Academic Hub",
-      stats: [
-        { label: "Classes Active", val: "48 Rooms", color: "text-indigo-600" },
-        { label: "Term Fee Recv.", val: "96.4%", color: "text-emerald-600" },
-      ],
-      listTitle: "Upcoming Examinations",
-      list: [
-        { desc: "Advanced Algebra (Hall A)", right: "Jun 12, 09:00 AM", status: "Scheduled", badgeColor: "bg-blue-100 text-blue-800" },
-        { desc: "Organic Chemistry (Lab 3)", right: "Jun 15, 11:30 AM", status: "Ready", badgeColor: "bg-emerald-100 text-emerald-800" },
-        { desc: "World History (Room 42)", right: "Jun 18, 02:00 PM", status: "Draft", badgeColor: "bg-gray-100 text-gray-800" },
-      ],
-      chartValues: [50, 55, 60, 58, 70, 75, 82],
-    },
-  },
-  {
-    id: "ttsme",
-    name: "TTSME",
-    displayName: "Tours & Travel System Management ERP (TTSME)",
-    icon: Plane,
-    description:
-      "Pisoft's Tours & Travel System Management ERP (TTSME) simplifies itinerary generation, tour agent quotas, live booking states, transport schedules, and multi-vendor payout agreements in a single hub.",
-    modules: [
-      { title: "Itinerary Generator", desc: "Branded itinerary creation tool compiling flight, hotel, tour guide, and activity logs." },
-      { title: "Live Calendar Engine", desc: "Grid mapping showing vehicle seat bookings, flight occupancy, and tour reservations." },
-      { title: "Payouts Auditor", desc: "Automated commission splits and payout schedules for local suppliers and tour guides." },
-      { title: "Manifests Exporter", desc: "Rapid export of flight, rail, and hotel room manifests for operations coordination." },
-    ],
-    metrics: [
-      { label: "Travel Bookings", value: "8,500 / mo" },
-      { label: "Voucher Dispatch", value: "Instant" },
-      { label: "Connected Vendors", value: "240 Partners" },
-    ],
-    dashboardMock: {
-      title: "TTSME Booking Center",
-      stats: [
-        { label: "Active Tours", val: "450 Bookings", color: "text-sky-600" },
-        { label: "Payout Queue", val: "0 Pending", color: "text-emerald-600" },
-      ],
-      listTitle: "Vendor Dispatches",
-      list: [
-        { desc: "Marriott Paris (12 Pax)", right: "Hotel Vouchered", status: "Dispatched", badgeColor: "bg-emerald-100 text-emerald-800" },
-        { desc: "Swiss Alps Tour (4 Pax)", right: "Guide Assigned", status: "Active", badgeColor: "bg-blue-100 text-blue-800" },
-        { desc: "Haneda Express (8 Pax)", right: "Transfer Booked", status: "Confirmed", badgeColor: "bg-emerald-100 text-emerald-800" },
-      ],
-      chartValues: [30, 42, 35, 60, 55, 78, 85],
-    },
-  },
-  {
-    id: "asme",
-    name: "ASME",
-    displayName: "Automotive System Management ERP (ASME)",
-    icon: Car,
-    description:
-      "Pisoft's Automotive System Management ERP (ASME) streamlines vehicle sales cycles, spare parts warehouses, repair queue tracking, mechanic schedules, and customer test drive pipelines.",
-    modules: [
-      { title: "Spare Parts Catalog", desc: "Multi-warehouse stock tracking, vendor list coordination, and automatic parts reordering." },
-      { title: "Repair Bay Queue", desc: "Drag-and-drop job card tracker showing repair tasks, mechanic logs, and vehicle delivery times." },
-      { title: "Dealership Sales CRM", desc: "Manage auto inventory, model configurations, finance deals, and vehicle registrations." },
-      { title: "Quality Checklists", desc: "Custom digital safety checks, vehicle diagnostic logs, and test drive logs." },
-    ],
-    metrics: [
-      { label: "Inventory items", value: "12,000+" },
-      { label: "Service Turnaround", value: "-45 Mins" },
-      { label: "Dealer Branches", value: "24 Synced" },
-    ],
-    dashboardMock: {
-      title: "ASME Workshop Console",
-      stats: [
-        { label: "Repair Bays Active", val: "14 / 18 Bays", color: "text-indigo-600" },
-        { label: "Low Stock Parts", val: "3 Items", color: "text-rose-600" },
-      ],
-      listTitle: "Job Cards Queue",
-      list: [
-        { desc: "Honda Accord (Service)", right: "Job Card 42", status: "Diagnosing", badgeColor: "bg-amber-100 text-amber-800" },
-        { desc: "Toyota RAV4 (Brakes)", right: "Job Card 45", status: "Approved", badgeColor: "bg-blue-100 text-blue-800" },
-        { desc: "BMW X5 (Detailing)", right: "Job Card 47", status: "Finished", badgeColor: "bg-emerald-100 text-emerald-800" },
-      ],
-      chartValues: [25, 30, 48, 42, 60, 65, 74],
-    },
-  },
-  {
-    id: "mhsme",
-    name: "MHSME",
-    displayName: "Medical & Healthcare System Management ERP (MHSME)",
-    icon: HeartPulse,
-    description:
-      "Pisoft's Medical & Healthcare System Management ERP (MHSME) provides clinical operations with secure EMR files, doctor shift scheduling grids, outpatient logs, and automated insurance claims processing.",
-    modules: [
-      { title: "Patient EMR Records", desc: "Encryption-secured patient database keeping diagnostic reports, history, and vitals." },
-      { title: "Doctor Rotations", desc: "Shift planners coordinating on-call doctor availability, ward checkups, and consultations." },
-      { title: "Insurance Claim Formatter", desc: "Automated ICD-10 encoding, co-pay invoice calculations, and online claim submissions." },
-      { title: "Pharmacy Stock Manager", desc: "Expiration alerts, prescription sync, and digital stock logs for in-house medicine." },
-    ],
-    metrics: [
-      { label: "Patient Files", value: "42,000+" },
-      { label: "Claims Acceptance", value: "97.4%" },
-      { label: "Clinic Checkins", value: "240 / day" },
-    ],
-    dashboardMock: {
-      title: "MHSME Medical Dashboard",
-      stats: [
-        { label: "Doctors On Duty", val: "12 Staff", color: "text-teal-600" },
-        { label: "Emergency Status", val: "Normal", color: "text-cyan-600" },
-      ],
-      listTitle: "Patient Check-Ins",
-      list: [
-        { desc: "Arthur Pendragon (General)", right: "Vitals Logged", status: "In Consult", badgeColor: "bg-amber-100 text-amber-800" },
-        { desc: "Guinevere Smith (Lab 1)", right: "Samples Collected", status: "Testing", badgeColor: "bg-blue-100 text-blue-800" },
-        { desc: "Merlin Ambrosius (Pharm)", right: "Prescr. Ready", status: "Completed", badgeColor: "bg-emerald-100 text-emerald-800" },
-      ],
-      chartValues: [45, 52, 60, 58, 68, 79, 88],
-    },
-  },
-  {
-    id: "spsme",
-    name: "SPSME",
-    displayName: "Service Provider's System Management ERP (SPSME)",
+    id: "hr",
+    name: "HR MANAGEMENT",
+    displayName: "Human Resource Operations",
     icon: Building2,
-    description:
-      "Pisoft's Service Provider's System Management ERP (SPSME) powers client-facing teams to design and build custom service catalogs, allocate project staff, manage client bookings, and generate itemized billing.",
+    description: "Manage employees, departments, roles, attendance, leave, organizational information, and HR workflows.",
+    highlight: "Your people. Your processes. One place.",
+    cta: "Explore HR →",
     modules: [
-      { title: "Client CRM Database", desc: "Secure storage of client profiles, service package preferences, and interaction histories." },
-      { title: "Service Tier Catalog", desc: "Easily configure tier bundles, seasonal subscriptions, and flexible hourly pricing models." },
-      { title: "Appointment Engine", desc: "Dynamic scheduling calendars with automated text/email confirmations and reminders." },
-      { title: "Invoicing & Taxes", desc: "Rapid calculations for hourly work logs, package credits, local taxes, and instant PDF invoice downloads." },
+      { title: "Employee Lifecycle Directory", desc: "Centralized employee profiles, onboarding documents, and role assignments." },
+      { title: "Biometric & Mobile Attendance", desc: "Seamless integration with facial recognition, biometric hardware, or GPS check-in." },
+      { title: "Leave Approval Workflows", desc: "Configurable leave quotas, policy rules, and multi-tier manager approvals." },
+      { title: "Performance Appraisals", desc: "Structured KPI reviews, goal tracking, and appraisal feedback forms." },
     ],
     metrics: [
-      { label: "Support Rating", value: "4.9★" },
-      { label: "Billing Settled", value: "99.9%" },
-      { label: "Service Hours", value: "15.8k+" },
+      { label: "HR Admin Time", value: "-60% Saved" },
+      { label: "Attendance Accuracy", value: "100% Verified" },
+      { label: "Employee Portal", value: "Self-Service" },
     ],
-    dashboardMock: {
-      title: "SPSME Operations Suite",
-      stats: [
-        { label: "Pending Queries", val: "0 Tickets", color: "text-violet-600" },
-        { label: "Team Allocation", val: "94.2%", color: "text-indigo-600" },
-      ],
-      listTitle: "Active Service Tickets",
-      list: [
-        { desc: "Alpha Logistics (ERP Tuning)", right: "Team A assigned", status: "Running", badgeColor: "bg-blue-100 text-blue-800" },
-        { desc: "Beta Retail (Audit Intake)", right: "Docs validated", status: "Completed", badgeColor: "bg-emerald-100 text-emerald-800" },
-        { desc: "Delta Consult (Custom Dev)", right: "Specs defined", status: "Planning", badgeColor: "bg-purple-100 text-purple-800" },
-      ],
-      chartValues: [30, 45, 42, 65, 70, 82, 91],
-    },
+  },
+  {
+    id: "payroll",
+    name: "PAYROLL",
+    displayName: "Automated Payroll Engine",
+    icon: FileText,
+    description: "Simplify salary processing, payroll management, employee compensation, and related records.",
+    highlight: "Make payroll easier to manage and easier to understand.",
+    cta: "Explore Payroll →",
+    modules: [
+      { title: "1-Click Monthly Salary Processing", desc: "Calculate gross pay, overtime, bonuses, and deductions automatically." },
+      { title: "Tax & Statutory Deductions", desc: "Auto-apply PF, ESI, TDS, and statutory deduction rules per region." },
+      { title: "Automated Payslip Generation", desc: "Deliver digital payslips straight to employee email or portal." },
+      { title: "Bank Batch Transfers", desc: "Generate formatted bank salary transfer files for all major banks." },
+    ],
+    metrics: [
+      { label: "Payroll Processing", value: "Minutes, Not Days" },
+      { label: "Deduction Accuracy", value: "100% Exact" },
+      { label: "Payslip Delivery", value: "Instant Digital" },
+    ],
+  },
+  {
+    id: "production",
+    name: "PRODUCTION",
+    displayName: "Production & Shop Floor Control",
+    icon: Cpu,
+    description: "Connect production planning, materials, processes, and operational tracking.",
+    highlight: "Bring production and business management together.",
+    cta: "Explore Production →",
+    modules: [
+      { title: "Bill of Materials (BOM)", desc: "Define multi-level raw material recipes, scrap percentages, and labor costs." },
+      { title: "Work Order Scheduling", desc: "Schedule shop floor jobs, machine allocations, and shift assignments." },
+      { title: "Quality Checkpoints (QC)", desc: "Enforce raw material and finished goods quality inspection logs." },
+      { title: "WIP Inventory Tracking", desc: "Monitor work-in-progress stock as items move through manufacturing stages." },
+    ],
+    metrics: [
+      { label: "Shop Floor Visibility", value: "100% Live" },
+      { label: "Material Waste", value: "-35% Reduced" },
+      { label: "Job On-Time Rate", value: "96.4%" },
+    ],
+  },
+  {
+    id: "projects",
+    name: "PROJECT MANAGEMENT",
+    displayName: "Project & Task Management",
+    icon: Briefcase,
+    description: "Plan projects, assign responsibilities, monitor progress, and keep teams aligned.",
+    highlight: "From planning to completion, keep every project moving.",
+    cta: "Explore Projects →",
+    modules: [
+      { title: "Gantt Chart & Milestone Planner", desc: "Visual timeline view of project phases, dependencies, and deadlines." },
+      { title: "Task Assignment & Time Logs", desc: "Assign tasks, log billable hours, and track team workloads." },
+      { title: "Project Costing & Profitability", desc: "Compare estimated budgets against real-time material & labor expenses." },
+      { title: "Client Progress Sharing", desc: "Provide external client viewports for milestone approvals." },
+    ],
+    metrics: [
+      { label: "Project Delivery", value: "On Schedule" },
+      { label: "Budget Variance", value: "< 2% Margin" },
+      { label: "Team Alignment", value: "Unified Portal" },
+    ],
+  },
+  {
+    id: "analytics",
+    name: "REPORTS & ANALYTICS",
+    displayName: "Real-Time Reports & Dashboards",
+    icon: PieChart,
+    description: "Transform operational data into meaningful dashboards and actionable business insights.",
+    highlight: "Stop waiting for reports. Start seeing the business in real time.",
+    cta: "Explore Analytics →",
+    modules: [
+      { title: "Executive Business Dashboard", desc: "Single-screen overview of revenue, cashflow, pending orders, and inventory." },
+      { title: "Custom Report Builder", desc: "Drag-and-drop report creator to filter, group, and export operational data." },
+      { title: "Scheduled Email Digests", desc: "Automate daily, weekly, or monthly executive summary PDFs to leadership." },
+      { title: "Role-Based Data Access", desc: "Ensure departmental managers only view relevant operational metrics." },
+    ],
+    metrics: [
+      { label: "Report Generation", value: "Instant Live" },
+      { label: "Executive Insights", value: "24/7 Access" },
+      { label: "Data Export Formats", value: "PDF / Excel / CSV" },
+    ],
   },
 ];
 
+const erpFeaturesList = [
+  "Sales Management", "Customer Management", "Lead Management", "CRM",
+  "Inventory Management", "Purchase Management", "Supplier Management", "Accounts & Finance",
+  "HR Management", "Employee Management", "Attendance", "Leave Management",
+  "Payroll", "Production Management", "Project Management", "Task Management",
+  "Reports & Analytics", "Business Dashboards", "Notifications", "Workflow Management",
+  "Document Management", "Data Management", "Role-Based Access", "Administrative Controls", "Multi-Department Management"
+];
+
 function ApplicationsPage() {
-  const [activeTab, setActiveTab] = useState(0); // Default to FSME
+  const [activeTab, setActiveTab] = useState(0);
   const currentApp = applicationsData[activeTab];
 
   return (
     <main className="relative bg-background text-foreground min-h-screen flex flex-col pt-[var(--navbar-height,130px)]">
 
-      {/* Redesigned Hero Header Section */}
-      <section className="relative bg-slate-950 py-16 md:py-24 overflow-hidden border-b border-border">
-        {/* Dotted Grid and Radial Glow */}
+      {/* Hero Header Section */}
+      <section className="relative bg-slate-950 text-white py-16 md:py-24 overflow-hidden border-b border-border">
         <div className="absolute inset-0 bg-grid opacity-15 pointer-events-none" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-96 rounded-full bg-[image:var(--gradient-primary)] blur-3xl opacity-20" />
@@ -249,35 +263,22 @@ function ApplicationsPage() {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex items-center justify-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4"
+            className="flex items-center justify-center gap-2 text-xs uppercase tracking-[0.2em] text-accent mb-4 font-bold"
           >
-            <Link to="/" className="hover:text-accent transition">HOME</Link>
+            <Link to="/" className="hover:text-white transition">HOME</Link>
             <span>/</span>
-            <span className="text-accent-glow font-semibold">APPLICATIONS</span>
-            <span>/</span>
-            <span className="text-white/80">{currentApp.name}</span>
+            <span className="text-white">ERP APPLICATIONS</span>
           </motion.div>
 
-          <AnimatePresence mode="wait">
-            <motion.h1
-              key={currentApp.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.25 }}
-              className="text-3xl md:text-5xl font-extrabold tracking-tight text-white uppercase font-display max-w-4xl mx-auto leading-tight"
-            >
-              {currentApp.displayName}
-            </motion.h1>
-          </AnimatePresence>
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white uppercase font-display max-w-4xl mx-auto leading-[1.15]">
+            Everything Your Business Needs. <br />
+            <span className="text-gradient-accent">Connected in One Place.</span>
+          </h1>
 
-          <p className="mt-4 text-sm md:text-base text-slate-400 max-w-xl mx-auto">
-            Explore the specialized modular architectures designed for sector enterprise control.
+          <p className="mt-6 text-slate-300 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+            Pisoft ERP brings essential business functions together through an integrated application ecosystem designed around real operational workflows.
           </p>
         </div>
-
-        {/* Glowing Indicator Line */}
-        <div className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-accent to-transparent shadow-[0_0_12px_var(--accent-glow)]" />
       </section>
 
       {/* Main Content Grid */}
@@ -285,11 +286,11 @@ function ApplicationsPage() {
         <div className="grid lg:grid-cols-[320px_1fr] gap-12 items-start">
           
           {/* Left Sidebar (Applications Tabs) */}
-          <div className="flex flex-col gap-3 bg-surface/40 border border-border/60 p-4 rounded-2xl backdrop-blur-md sticky top-36">
+          <div className="flex flex-col gap-2 bg-surface/40 border border-border/60 p-4 rounded-2xl backdrop-blur-md sticky top-[calc(var(--navbar-height)+1.5rem)]">
             <h2 className="text-[11px] font-bold tracking-[0.2em] text-muted-foreground px-3 mb-2 uppercase">
-              ERP SYSTEM SUITES
+              ERP APPLICATION ECOSYSTEM
             </h2>
-            <div className="flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible gap-2 pb-2 lg:pb-0 scrollbar-none">
+            <div className="flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible gap-1.5 pb-2 lg:pb-0 scrollbar-none">
               {applicationsData.map((app, i) => {
                 const isSelected = activeTab === i;
                 const Icon = app.icon;
@@ -297,220 +298,139 @@ function ApplicationsPage() {
                   <button
                     key={app.id}
                     onClick={() => setActiveTab(i)}
-                    className={`flex items-center gap-3.5 px-4 py-3.5 rounded-xl text-left text-sm font-semibold whitespace-nowrap transition-all border shrink-0 w-auto lg:w-full
-                      ${
-                        isSelected
-                          ? "bg-accent/10 border-accent text-accent glow-accent"
-                          : "bg-surface/50 border-border/80 text-muted-foreground hover:bg-surface/80 hover:text-foreground hover:border-border"
-                      }`}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold transition-all text-left whitespace-nowrap lg:whitespace-normal w-full ${
+                      isSelected
+                        ? "bg-accent text-accent-foreground shadow-md"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    }`}
                   >
-                    <Icon className={`size-4.5 shrink-0 ${isSelected ? "text-accent" : "text-muted-foreground"}`} />
-                    <div className="flex flex-col items-start leading-tight">
-                      <span className="text-xs font-bold uppercase text-muted-foreground/60">{app.name} Suite</span>
-                      <span className="mt-0.5 text-xs lg:text-[13px]">{app.name} SYSTEM</span>
-                    </div>
+                    <Icon className="size-4 shrink-0" />
+                    <span className="truncate">{app.name}</span>
                   </button>
                 );
               })}
             </div>
           </div>
 
-          {/* Right Content Details Area */}
-          <div className="min-h-[500px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentApp.id}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-                className="grid md:grid-cols-1 lg:grid-cols-2 gap-12"
-              >
-                {/* Left: Text Description & Features */}
-                <div className="flex flex-col justify-between gap-8">
-                  <div>
-                    {/* Header badge */}
-                    <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 px-3.5 py-1 text-xs text-muted-foreground mb-4">
-                      <span className="size-2 rounded-full bg-accent animate-pulse" />
-                      App-Specific Core Module
-                    </div>
-
-                    <h3 className="text-3xl font-bold tracking-tight font-display mb-4 text-gradient-primary">
-                      {currentApp.name} System Infrastructure
-                    </h3>
-
-                    {/* Description with drop-cap */}
-                    <p className="text-muted-foreground leading-relaxed mb-6 text-sm md:text-base">
-                      <span className="float-left text-5xl font-extrabold pr-2 pt-1 font-display text-accent leading-[0.8]">
-                        {currentApp.description.charAt(0)}
-                      </span>
-                      {currentApp.description.slice(1)}
-                    </p>
-
-                    {/* Dynamic Modules list cards */}
-                    <div className="space-y-4">
-                      <h4 className="text-xs font-bold tracking-[0.15em] text-muted-foreground uppercase mb-3">
-                        Core Functional Modules
-                      </h4>
-                      <div className="grid sm:grid-cols-2 gap-4">
-                        {currentApp.modules.map((mod, index) => (
-                          <div
-                            key={index}
-                            className="p-4 rounded-xl border border-border bg-surface/40 hover:bg-surface/60 transition-colors flex gap-3"
-                          >
-                            <CheckCircle2 className="size-5 text-accent shrink-0 mt-0.5" />
-                            <div>
-                              <div className="text-sm font-semibold text-foreground leading-snug">
-                                {mod.title}
-                              </div>
-                              <div className="text-[12px] text-muted-foreground mt-1 leading-normal">
-                                {mod.desc}
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* System statistics summary */}
-                  <div className="border-t border-border pt-6 mt-4">
-                    <div className="grid grid-cols-3 gap-4">
-                      {currentApp.metrics.map((met, index) => (
-                        <div key={index} className="text-left">
-                          <div className="text-2xl md:text-3xl font-extrabold text-gradient-accent font-display">
-                            {met.value}
-                          </div>
-                          <div className="text-[11px] text-muted-foreground uppercase tracking-wider mt-1">
-                            {met.label}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+          {/* Right Main Panel */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentApp.id}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3 }}
+              className="flex flex-col gap-10"
+            >
+              {/* Application Header Card */}
+              <div className="p-8 rounded-3xl border border-border bg-surface/60 backdrop-blur-xl shadow-lg relative overflow-hidden">
+                <div className="absolute top-0 right-0 size-60 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
+                
+                <div className="flex items-center gap-3 text-accent text-xs font-extrabold uppercase tracking-wider mb-3">
+                  <currentApp.icon className="size-5" />
+                  <span>{currentApp.name}</span>
                 </div>
 
-                {/* Right: Simulated Interactive Mockup Dashboard */}
-                <div className="flex flex-col justify-center">
-                  <div className="relative rounded-2xl border border-border bg-surface shadow-[var(--shadow-elevated)] overflow-hidden w-full max-w-md mx-auto aspect-[4/3] flex flex-col">
-                    {/* Simulated OS Browser Window Chrome */}
-                    <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-border bg-background/80 shrink-0 select-none">
-                      <span className="size-2 rounded-full bg-rose-400" />
-                      <span className="size-2 rounded-full bg-amber-400" />
-                      <span className="size-2 rounded-full bg-emerald-400" />
-                      <span className="ml-3 text-[10px] text-muted-foreground font-mono">
-                        pisoft.erp/{currentApp.id}-system
-                      </span>
-                    </div>
+                <h2 className="text-3xl md:text-4xl font-extrabold font-display tracking-tight">
+                  {currentApp.displayName}
+                </h2>
 
-                    {/* Inside Mock Dashboard Content */}
-                    <div className="flex-1 p-5 flex flex-col justify-between bg-gradient-to-b from-surface to-background overflow-hidden">
-                      {/* Dashboard Header */}
-                      <div className="flex items-center justify-between border-b border-border/60 pb-3 shrink-0">
-                        <div className="flex items-center gap-2">
-                          <currentApp.icon className="size-4.5 text-accent" />
-                          <span className="text-[13px] font-bold tracking-tight text-foreground">
-                            {currentApp.dashboardMock.title}
-                          </span>
-                        </div>
-                        <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-accent/10 text-accent uppercase tracking-wide">
-                          <Zap className="size-2.5 animate-pulse text-accent" />
-                          App Live
-                        </span>
-                      </div>
+                <p className="mt-4 text-muted-foreground text-sm md:text-base leading-relaxed">
+                  {currentApp.description}
+                </p>
 
-                      {/* Mock Core Stats Block */}
-                      <div className="grid grid-cols-2 gap-3 my-3 shrink-0">
-                        {currentApp.dashboardMock.stats.map((st, index) => (
-                          <div key={index} className="p-3 border border-border/50 bg-background/50 rounded-xl">
-                            <span className="text-[10px] text-muted-foreground block">{st.label}</span>
-                            <span className={`text-base font-extrabold font-display ${st.color} block mt-0.5`}>
-                              {st.val}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Dynamic Mock Chart representation */}
-                      <div className="relative h-20 border border-border/40 bg-surface/50 rounded-xl p-3 flex flex-col justify-between overflow-hidden shrink-0">
-                        <div className="flex items-center justify-between text-[10px] text-muted-foreground uppercase font-semibold">
-                          <span>Operational Flow Rate</span>
-                          <span className="flex items-center gap-1 text-accent">
-                            <TrendingUp className="size-3" /> Stabilized
-                          </span>
-                        </div>
-                        {/* Interactive SVG Chart Line */}
-                        <div className="h-9 relative w-full mt-2">
-                          <svg className="w-full h-full overflow-visible" viewBox="0 0 100 30" preserveAspectRatio="none">
-                            <defs>
-                              <linearGradient id={`grad-${currentApp.id}`} x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stopColor="oklch(0.72 0.18 55)" stopOpacity="0.4" />
-                                <stop offset="100%" stopColor="oklch(0.72 0.18 55)" stopOpacity="0.0" />
-                              </linearGradient>
-                            </defs>
-                            <path
-                              d={`M 0 ${30 - currentApp.dashboardMock.chartValues[0] / 3} 
-                                  L 15 ${30 - currentApp.dashboardMock.chartValues[1] / 3} 
-                                  L 33 ${30 - currentApp.dashboardMock.chartValues[2] / 3} 
-                                  L 50 ${30 - currentApp.dashboardMock.chartValues[3] / 3} 
-                                  L 66 ${30 - currentApp.dashboardMock.chartValues[4] / 3} 
-                                  L 83 ${30 - currentApp.dashboardMock.chartValues[5] / 3} 
-                                  L 100 ${30 - currentApp.dashboardMock.chartValues[6] / 3}`}
-                              fill="none"
-                              stroke="var(--color-accent)"
-                              strokeWidth="2.5"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                            <path
-                              d={`M 0 30 
-                                  L 0 ${30 - currentApp.dashboardMock.chartValues[0] / 3} 
-                                  L 15 ${30 - currentApp.dashboardMock.chartValues[1] / 3} 
-                                  L 33 ${30 - currentApp.dashboardMock.chartValues[2] / 3} 
-                                  L 50 ${30 - currentApp.dashboardMock.chartValues[3] / 3} 
-                                  L 66 ${30 - currentApp.dashboardMock.chartValues[4] / 3} 
-                                  L 83 ${30 - currentApp.dashboardMock.chartValues[5] / 3} 
-                                  L 100 ${30 - currentApp.dashboardMock.chartValues[6] / 3} 
-                                  L 100 30 Z`}
-                              fill={`url(#grad-${currentApp.id})`}
-                            />
-                          </svg>
-                        </div>
-                      </div>
-
-                      {/* Mock Records Table/List */}
-                      <div className="flex-1 min-h-0 flex flex-col justify-between mt-3">
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground mb-1.5 shrink-0">
-                          {currentApp.dashboardMock.listTitle}
-                        </div>
-                        <div className="space-y-1.5 overflow-y-auto pr-1 flex-1">
-                          {currentApp.dashboardMock.list.map((item, idx) => (
-                            <div
-                              key={idx}
-                              className="flex items-center justify-between text-xs px-2.5 py-1.5 bg-background border border-border/40 rounded-lg"
-                            >
-                              <div className="flex flex-col">
-                                <span className="font-semibold text-foreground leading-tight">{item.desc}</span>
-                                <span className="text-[9px] text-muted-foreground mt-0.5">{item.right}</span>
-                              </div>
-                              <span className={`px-2 py-0.5 rounded text-[9px] font-semibold ${item.badgeColor}`}>
-                                {item.status}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div className="mt-6 p-4 rounded-2xl bg-accent/10 border border-accent/20">
+                  <p className="text-sm font-bold text-accent font-display">
+                    "{currentApp.highlight}"
+                  </p>
                 </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+              </div>
+
+              {/* Modules Grid */}
+              <div>
+                <h3 className="text-xl font-bold font-display mb-6">Key Application Capabilities</h3>
+                <div className="grid md:grid-cols-2 gap-5">
+                  {currentApp.modules.map((m) => (
+                    <div key={m.title} className="p-6 rounded-2xl border border-border/80 bg-background/80 hover:border-accent/40 transition-all shadow-sm">
+                      <div className="flex items-center gap-2 font-bold text-sm text-foreground font-display mb-2">
+                        <CheckCircle2 className="size-4 text-accent shrink-0" />
+                        <span>{m.title}</span>
+                      </div>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        {m.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Performance Metrics & CTA */}
+              <div className="p-6 md:p-8 rounded-3xl bg-slate-950 text-white border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+                <div className="grid grid-cols-3 gap-6 w-full md:w-auto">
+                  {currentApp.metrics.map((met) => (
+                    <div key={met.label} className="text-center md:text-left">
+                      <div className="text-xl font-extrabold font-display text-accent">{met.value}</div>
+                      <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider mt-1">{met.label}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <Link
+                  to="/demo"
+                  className="inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-accent)] px-7 py-3.5 text-xs font-extrabold text-accent-foreground glow-accent hover:opacity-95 transition-all shadow-lg whitespace-nowrap"
+                >
+                  <span>Book Free ERP Demo</span>
+                  <ArrowRight className="size-4" />
+                </Link>
+              </div>
+
+            </motion.div>
+          </AnimatePresence>
+
         </div>
       </section>
 
+      {/* SECTION 09 — ERP FEATURES MATRIX */}
+      <section className="bg-slate-950 text-white py-20 px-6 border-t border-slate-900">
+        <div className="max-w-6xl mx-auto text-center">
+          <div className="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-3">ERP FEATURES</div>
+          <h2 className="text-3xl md:text-5xl font-extrabold font-display tracking-tight text-white max-w-3xl mx-auto">
+            Built Around Your Business.
+          </h2>
+          <p className="mt-4 text-slate-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+            Every business operates differently. Pisoft ERP brings together a broad set of capabilities that can be configured around your operational requirements.
+          </p>
 
+          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 text-left">
+            {erpFeaturesList.map((feat) => (
+              <div key={feat} className="p-3.5 rounded-xl border border-slate-800 bg-slate-900/60 flex items-center gap-2 text-xs font-semibold text-slate-200">
+                <Check className="size-3.5 text-accent shrink-0" />
+                <span>{feat}</span>
+              </div>
+            ))}
+          </div>
 
+          <div className="mt-16 p-8 md:p-12 rounded-3xl border border-slate-800 bg-slate-900/40 backdrop-blur-md max-w-4xl mx-auto">
+            <h3 className="text-2xl md:text-4xl font-extrabold font-display tracking-tight text-white leading-tight">
+              Your Business Doesn't Have to Adapt to Your Software.
+              <br />
+              <span className="text-gradient-accent">Your Software Should Adapt to Your Business.</span>
+            </h3>
+            <div className="mt-8 flex justify-center">
+              <Link
+                to="/demo"
+                className="inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-accent)] px-8 py-4 text-sm font-bold text-accent-foreground glow-accent hover:opacity-95 transition-all shadow-xl"
+              >
+                <span>Request Customization Walkthrough</span>
+                <ArrowRight className="size-4" />
+              </Link>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <Finale />
     </main>
   );
 }

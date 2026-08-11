@@ -4,12 +4,12 @@ import chaosVideo from "@/assets/i2.mp4";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const days = [
-  { day: "Day 1", title: "Everything feels manageable", body: "Spreadsheets work. WhatsApp groups handle updates. The team moves fast." },
-  { day: "Day 30", title: "Confusion begins", body: "Sales grow. Data multiplies. Orders pile up. Small cracks appear." },
-  { day: "Day 60", title: "Information gap", body: "Different departments use different sheets. Decisions take longer. Discrepancies start appearing." },
-  { day: "Day 90", title: "Cracks widen", body: "Inventory mismatches. Missed payments. Reports delayed. Overtime becomes routine." },
-  { day: "Day 120", title: "Burnt out team", body: "Customer support is overwhelmed. Manual error corrections waste hours. Morale begins to slip." },
-  { day: "Day 180", title: "Growth stalls", body: "You spend more time managing information than growing the business. Scale is impossible." },
+  { day: "Day 01", title: "Everything Feels Manageable.", body: "Spreadsheets work. WhatsApp groups handle updates. The team moves quickly. Everything feels simple." },
+  { day: "Day 30", title: "Confusion Begins.", body: "Sales increase. Data multiplies. Orders pile up. Small cracks start appearing." },
+  { day: "Day 60", title: "The Information Gap.", body: "Different departments use different sheets and systems. Decisions take longer. Discrepancies start appearing." },
+  { day: "Day 90", title: "The Cracks Widen.", body: "Inventory mismatches. Missed payments. Delayed reports. Manual corrections become routine." },
+  { day: "Day 120", title: "The Team Gets Overwhelmed.", body: "Customer support is overloaded. Employees spend hours correcting information instead of moving the business forward." },
+  { day: "Day 180", title: "Growth Starts Becoming Difficult.", body: "You spend more time managing information than growing the business. Scale becomes harder." },
 ];
 
 export function ChaosStory() {
@@ -40,7 +40,7 @@ export function ChaosStory() {
   }, [isSectionInView, isMobile]);
 
   // Smooth scroll translation for the timeline list
-  const timelineY = useTransform(scrollYProgress, [0.05, 0.65], ["0%", "-70%"]);
+  const timelineY = useTransform(scrollYProgress, [0.05, 0.65], ["0%", "-60%"]);
 
   // Listen to scroll progress to trigger state-based transitions
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
@@ -80,16 +80,16 @@ export function ChaosStory() {
           </div>
 
           {/* Timeline list */}
-          <div className="relative pl-6 py-2 overflow-hidden flex flex-col justify-start">
+          <div className="relative pl-8 py-4 overflow-hidden flex flex-col justify-start">
             {/* Vertical timeline line */}
-            <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-border to-transparent" />
+            <div className="absolute left-3 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-border to-transparent" />
 
             <div className="flex flex-col gap-10 pt-2">
               {days.map((d) => (
                 <div key={d.day} className="relative flex flex-col items-start">
                   {/* Glow dot timeline node */}
-                  <div className="absolute -left-[31px] top-1.5 size-3.5 rounded-full bg-background border-2 border-accent flex items-center justify-center shadow-[0_0_10px_rgba(234,88,12,0.5)]">
-                    <div className="size-1 rounded-full bg-accent" />
+                  <div className="absolute -left-[27px] top-1.5 size-4 rounded-full bg-background border-2 border-accent flex items-center justify-center shadow-[0_0_10px_rgba(234,88,12,0.5)]">
+                    <div className="size-1.5 rounded-full bg-accent" />
                   </div>
 
                   <div className="text-xs uppercase tracking-[0.2em] text-accent mb-1 font-semibold">
@@ -207,15 +207,15 @@ export function ChaosStory() {
                 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
                 style={{ originX: 0 }}
-                className="absolute inset-0 pl-6 md:pl-12 py-2 overflow-hidden flex flex-col justify-start pointer-events-auto"
+                className="absolute inset-0 pl-10 md:pl-16 py-4 overflow-hidden flex flex-col justify-start pointer-events-auto"
               >
                 {/* Vertical timeline line */}
-                <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-border to-transparent" />
+                <div className="absolute left-3 md:left-5 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-border to-transparent" />
 
                 {/* Sliding Inner List */}
                 <motion.div 
                   style={{ y: timelineY }} 
-                  className="flex flex-col gap-12 md:gap-16 pt-2 pb-24"
+                  className="flex flex-col gap-12 md:gap-16 pt-6 pb-28"
                 >
                   {days.map((d, i) => (
                     <div
@@ -223,8 +223,8 @@ export function ChaosStory() {
                       className="relative flex flex-col items-start"
                     >
                       {/* Glow dot timeline node */}
-                      <div className="absolute -left-[31px] md:-left-[55px] top-1.5 size-3.5 rounded-full bg-background border-2 border-accent flex items-center justify-center shadow-[0_0_10px_rgba(234,88,12,0.5)]">
-                        <div className="size-1 rounded-full bg-accent animate-pulse" />
+                      <div className="absolute -left-[35px] md:-left-[51px] top-1.5 size-4 rounded-full bg-background border-2 border-accent flex items-center justify-center shadow-[0_0_12px_rgba(234,88,12,0.6)]">
+                        <div className="size-1.5 rounded-full bg-accent animate-pulse" />
                       </div>
 
                       <div className="text-xs uppercase tracking-[0.2em] text-accent mb-2 font-semibold">
@@ -253,15 +253,15 @@ export function ChaosStory() {
                 className="absolute inset-0 flex flex-col justify-center items-center md:items-start text-center md:text-left pointer-events-auto"
                 style={{ pointerEvents: showCTA ? "auto" : "none" }}
               >
-                <h3 className="text-3xl md:text-5xl font-bold font-display tracking-tight leading-tight">
-                  Does this <span className="text-gradient-accent">sound familiar</span>?
+                <h3 className="text-3xl md:text-5xl font-bold font-display tracking-tight leading-tight uppercase">
+                  DOES THIS <span className="text-gradient-accent">SOUND FAMILIAR</span>?
                 </h3>
-                <p className="mt-4 text-muted-foreground text-sm md:text-base max-w-md">
-                  You don't have to stay stuck in firefighting mode. Pisoft unifies your spreadsheets, chats, and tools into a single source of truth.
+                <p className="mt-4 text-muted-foreground text-sm md:text-base max-w-md leading-relaxed">
+                  You don't need another disconnected tool. You need a system that brings everything together. <strong className="text-foreground font-semibold">Pisoft ERP turns operational complexity into one connected source of truth.</strong>
                 </p>
                 <div className="mt-8 flex gap-4">
-                  <a href="#demo" className="inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-accent)] px-6 py-3 text-sm font-semibold text-accent-foreground glow-accent hover:opacity-95 transition">
-                    Get Started
+                  <a href="#applications" className="inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-accent)] px-7 py-3.5 text-sm font-bold text-accent-foreground glow-accent hover:opacity-95 transition-all shadow-lg">
+                    <span>See How Pisoft ERP Works →</span>
                   </a>
                 </div>
               </motion.div>
