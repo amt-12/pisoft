@@ -7,11 +7,7 @@ import {
   Lock, CheckCircle2, ShieldCheck, ArrowRight, Monitor, Play
 } from "lucide-react";
 
-import webSite1 from "@/assets/web_site1.png";
-import webSite2 from "@/assets/web_site2.png";
-import webSite3 from "@/assets/web_site3.png";
-import webSite4 from "@/assets/web_site4.png";
-import webSite5 from "@/assets/web_site5.png";
+
 
 const industries = [
   {
@@ -72,7 +68,7 @@ const liveWebsites = [
     domain: "chandigarhweb.com",
     category: "Digital Agency & Web Platforms",
     description: "Enterprise web development platform and digital solutions portal engineered for scaling businesses with integrated client portals and analytics.",
-    image: webSite1,
+    image: "https://www.pisoftinformatics.com/assets/11-DYg5uA75.webp",
     badge: "Web Platform & Client Portal",
     highlights: ["Custom Web Architecture", "SEO & Performance Engine", "Client Lead Management"],
     metric: "High-Speed Architecture"
@@ -84,7 +80,7 @@ const liveWebsites = [
     domain: "elivetoday.com",
     category: "Media & Digital News",
     description: "High-velocity media portal and news content engine designed for real-time traffic handling, live publishing, and ad monetization workflows.",
-    image: webSite2,
+    image: "https://www.pisoftinformatics.com/assets/Achievers-Bo15VV9y.webp",
     badge: "Media Engine & Content ERP",
     highlights: ["High-Volume Traffic Handling", "Real-Time News Publishing", "Dynamic Ad Management"],
     metric: "Live Traffic Stream"
@@ -96,7 +92,7 @@ const liveWebsites = [
     domain: "majesticcleaningservices.ca",
     category: "Commercial & Residential Services",
     description: "Service dispatch management system, automated client booking engine, team shift scheduler, and invoicing ERP.",
-    image: webSite3,
+    image: "https://www.pisoftinformatics.com/assets/7-rI60iPCX.webp",
     badge: "Service ERP & Booking Engine",
     highlights: ["Instant Online Booking Engine", "Service Dispatch & Route Sync", "Automated Billing & Receipts"],
     metric: "100% Automated Dispatch"
@@ -108,7 +104,7 @@ const liveWebsites = [
     domain: "dtpathlab.com",
     category: "Healthcare & Diagnostics",
     description: "Pathology laboratory management system, digital patient diagnostic report generation, and clinic sample tracking integration.",
-    image: webSite4,
+    image: "https://www.pisoftinformatics.com/assets/Majestic-Bs08zMwn.webp",
     badge: "Pathology ERP & Patient Portal",
     highlights: ["Digital Test Report Delivery", "Patient Portal & Sample Tracking", "Doctor & Lab Workflows"],
     metric: "Instant Digital Reports"
@@ -116,11 +112,11 @@ const liveWebsites = [
   {
     id: "dtsinsservices",
     title: "DTS Insurance Services",
-    url: "https://dtsinsservices.com/",
-    domain: "dtsinsservices.com",
+    url: "https://achieverspoint.org",
+    domain: "achieverspoint.org",
     category: "Insurance & Financial Services",
     description: "Policy tracking portal, financial compliance engine, customer lead management, and automated insurance claims portal.",
-    image: webSite5,
+    image: "https://www.pisoftinformatics.com/assets/8-DDnW5Rag.webp",
     badge: "Financial ERP & Claims Hub",
     highlights: ["Policy & Claims Management", "Client Portal & Quotation Builder", "Regulatory Compliance Engine"],
     metric: "Secure Ledger Sync"
@@ -129,7 +125,7 @@ const liveWebsites = [
 
 export function Industries() {
   const [active, setActive] = useState(0);
-  const [activeSiteIndex, setActiveSiteIndex] = useState(0);
+  const [activeSiteIndex, setActiveSiteIndex] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
 
   // Auto-rotate the active industry tab
@@ -154,8 +150,8 @@ export function Industries() {
 
   return (
     <section id="industries" className="relative py-24 px-6 bg-background">
-      <div className="max-w-6xl mx-auto">
-        
+      <div className="max-w-7xl mx-auto">
+
         {/* Header */}
         <div className="max-w-4xl mx-auto mb-16 overflow-hidden">
           <motion.div
@@ -226,11 +222,10 @@ export function Industries() {
               <button
                 key={it.name}
                 onClick={() => setActive(i)}
-                className={`group rounded-2xl border p-5 text-left transition-all ${
-                  active === i
+                className={`group rounded-2xl border p-5 text-left transition-all ${active === i
                     ? "border-accent bg-surface shadow-lg glow-accent"
                     : "border-border/80 bg-surface/50 hover:border-accent/40"
-                }`}
+                  }`}
               >
                 <it.Icon className={`size-5 ${active === i ? "text-accent" : "text-primary"}`} />
                 <div className="mt-3 text-sm font-bold font-display">{it.name}</div>
@@ -271,7 +266,7 @@ export function Industries() {
 
         {/* CREATIVE SHOWCASE SECTION: LIVE ENTERPRISE IMPLEMENTATIONS */}
         <div className="mt-20 pt-16 border-t border-border/80">
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -299,11 +294,10 @@ export function Industries() {
                 <button
                   key={site.id}
                   onClick={() => setActiveSiteIndex(i)}
-                  className={`px-5 py-2.5 rounded-full text-xs font-extrabold transition-all whitespace-nowrap flex items-center gap-2 ${
-                    isSelected
+                  className={`px-5 py-2.5 rounded-full text-xs font-extrabold transition-all whitespace-nowrap flex items-center gap-2 ${isSelected
                       ? "bg-accent text-accent-foreground shadow-lg glow-accent scale-105"
                       : "bg-surface border border-border/80 text-muted-foreground hover:text-foreground hover:bg-muted/60"
-                  }`}
+                    }`}
                 >
                   <span className="size-2 rounded-full bg-accent animate-pulse" />
                   <span>{site.title}</span>
@@ -332,10 +326,10 @@ export function Industries() {
                 <div className="absolute bottom-0 left-0 size-96 rounded-full bg-accent/15 blur-3xl pointer-events-none" />
 
                 <div className="grid lg:grid-cols-12 gap-10 items-center relative z-10">
-                  
+
                   {/* Left Column: Client System Specs */}
                   <div className="lg:col-span-6 flex flex-col gap-5 text-left">
-                    
+
                     <div className="flex items-center gap-3">
                       <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-extrabold uppercase tracking-widest">
                         <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -377,7 +371,7 @@ export function Industries() {
                         <span>Visit Live Platform</span>
                         <ExternalLink className="size-4" />
                       </a>
-                      
+
                       <div className="text-xs font-mono text-slate-400 bg-slate-900 border border-slate-800 px-4 py-2 rounded-full">
                         {activeSite.domain}
                       </div>
@@ -388,7 +382,7 @@ export function Industries() {
                   {/* Right Column: macOS Browser Mockup Frame */}
                   <div className="lg:col-span-6">
                     <div className="rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl overflow-hidden group">
-                      
+
                       {/* macOS Window Titlebar */}
                       <div className="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
                         <div className="flex items-center gap-2">
@@ -413,10 +407,10 @@ export function Industries() {
                         <img
                           src={activeSite.image}
                           alt={activeSite.title}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors duration-500" />
-                        
+
                         <div className="absolute bottom-4 right-4 bg-slate-950/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/10 text-[10px] text-white font-extrabold uppercase tracking-wider shadow-lg flex items-center gap-2">
                           <span className="size-1.5 rounded-full bg-accent animate-ping" />
                           <span>{activeSite.badge}</span>
@@ -443,11 +437,10 @@ export function Industries() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.06 }}
-                  className={`rounded-3xl border p-6 flex flex-col justify-between transition-all duration-300 cursor-pointer ${
-                    isCurrent
+                  className={`rounded-3xl border p-6 flex flex-col justify-between transition-all duration-300 cursor-pointer ${isCurrent
                       ? "border-accent bg-surface shadow-xl ring-1 ring-accent/30 scale-[1.02]"
                       : "border-border/80 bg-surface/50 hover:border-accent/40 hover:bg-surface/90"
-                  }`}
+                    }`}
                 >
                   <div>
                     {/* Thumbnail Image Frame */}
